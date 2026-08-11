@@ -36,40 +36,56 @@
 **UI functionality**
 
 - [] Come back to this once I've designed the template, to add functionality relating to design.
+- 
 - [] Research vanilla JS vs. React for front end user interaction
-- [] User clicks on person in photo, targeting box appears and drop down menu of names appears.
-- [] User clicks away and targeting box and drop down menu disappear
-  
+
+
+- [] Function - refreshImageBoard() - on game restart
+
 - [] Function - detectCursorOverImage(coordinates) - track cursor position over image
-- [] Function - showTargetingBox(coordinates) - display box and dropdown menu when cursor enters a person's zone
+- [] Function - showTargetingBoxOnClick(coordinates) - display box and dropdown menu when cursor clicks on a person's zone
 - [] Function - selectPersonFromDropdown(selectedName) 
-- [] Function - deselectPerson()
+- [] Function - deselectPerson() - click anywhere on the page other than the co-ordinates to deselect
   
+- [] Function - getUserNameForScoreboard()
 
-  ## BACKEND
+## BACKEND
 
+**setup**
+-[] initializeGame(remainingCharDB, image)
+
+**Timer**
 - [] Function - startTimer()
 - [] Function - endTimer()
 - [] Function - refreshTimer()
-- [] Function - 
-- [] Function
+- [] Function - resetTimer()
 
-
-**Timer**
 
 **Scoring - check selection**
-
 - [] Function - validateSelection(userInput, correctAnswer) 
 - [] Function - handleCorrectAnswer()
 - [] Function - handleIncorrectAnswer()
 - [] Function - updateScore()
 - [] Function - checkWinCondition(currentScore, totalPersons)
+  
+- [] Function - updateRemainingCharacters(remainingCharacterDb, foundCharacterId)
+- [] Function - getRemainingCharacters()
+  
+- [] Function - restartGame()
+- [] Function - resetCharacterDb()
+- [] Function - resetScore()
+  
+
 
 **Scoring - record keeping**
-- [] Function - updateFinalScore(userFinalScore, savedScores)
+- [] Function - updateFinalScore(userFinalScore, savedScores, username, time)
+- [] Function - validateUsername
 - [] Function - updateScoreDisplay
 
-- [] Design/map out functions for backend
+**Scoring - display**
+
+- [] Function - getHighScores()
+
   
 
 
