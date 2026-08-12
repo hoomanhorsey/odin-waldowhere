@@ -6,18 +6,18 @@
 - [x] Test connection with psql
 - [] Document connection string in .env.example
 
+**PROJECT SETUP**
+- [x] Run npm init -y
+- [x] Install dependencies
+
 **PRISMA**
-- [] Install Prisma
+- [x] Install Prisma
     - [] Create Prisma Schema
         - [] Define Models 
         - [] Run `prisma migrate dev --name init`
     - [] Set up .env with DATABASE_URL
     - [] Test Prisma Connection
     - [] Create seed script 
-
-**PROJECT SETUP**
-- [] Run npm init -y
-- [] Install dependencies
 
 
 
