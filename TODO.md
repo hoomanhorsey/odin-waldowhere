@@ -1,9 +1,9 @@
 ## SETUP
 
 **POSTGRES**
-- [] Set up PostgreSQL
-- [] Create new database as dev_user
-- [] Test connection with psql
+- [x] Set up PostgreSQL
+- [x] Create new database as dev_user
+- [x] Test connection with psql
 - [] Document connection string in .env.example
 
 **PRISMA**
@@ -73,8 +73,7 @@
   
 - [] Function - restartGame()
 - [] Function - resetCharacterDb()
-- [] Function - resetScore()
-  
+- [] Function - resetScore() 
 
 **Character Array**
 - [] Create characterData module with hardcoded character objects (id, name, x, y coordinates)
