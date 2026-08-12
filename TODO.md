@@ -76,6 +76,9 @@
 - [] Function - resetScore()
   
 
+**Character Array**
+- [] Create characterData module with hardcoded character objects (id, name, x, y coordinates)
+
 
 **Scoring - record keeping**
 - [] Function - updateFinalScore(userFinalScore, savedScores, username, time)
