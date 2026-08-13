@@ -9,6 +9,20 @@ function App() {
 
   return (
     <>
+
+    <section>
+
+    <div className="app"></div>
+    <div className="navbar">Navbar</div>
+    <div className="title"></div>
+    <div className="gameplayPanel">Gameplay Panel</div>
+    <div className="leaderboard">Leaderboard</div>
+    <div className="timer">Timer</div>
+
+    <div className="gameImage">gameImage</div>
+
+
+    </section>
       <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
