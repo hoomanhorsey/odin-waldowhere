@@ -1,0 +1,103 @@
+I have several markdown files including  a TODO and STARTUP and README for my odin project where's waldo web app. I'm using node.js, express, prisma for backend and I'm going to use React for front end.
+
+My TODO list is this.  
+
+## SETUP
+
+**POSTGRES**
+- [x] Set up PostgreSQL
+- [x] Create new database as dev_user
+- [x] Test connection with psql
+- [] Document connection string in .env.example
+
+**PROJECT SETUP**
+- [x] Run npm init -y
+- [x] Install dependencies
+
+**PRISMA**
+- [x] Install Prisma
+    - [] Create Prisma Schema
+        - [] Define Models 
+        - [] Run `prisma migrate dev --name init`
+    - [] Set up .env with DATABASE_URL
+    - [] Test Prisma Connection
+    - [] Create seed script 
+
+
+
+## FRONTEND
+
+**Image selection**
+- [] Identify shortlist of images
+- [] Select Image
+  
+**Design/map out front end**
+- [] Research flexbox vs. grid vs combo - trade-offs for mobile layouts
+- [] Design mobile first HTML page template (Title, Body)
+- [] Include responsive breakpoints (mobile, tablet, desktop)
+- [] Include features such as timer, score, persons remaining other things.
+ 
+**UI functionality**
+
+- [] Come back to this once I've designed the template, to add functionality relating to design.
+- 
+- [] Research vanilla JS vs. React for front end user interaction
+
+
+- [] Function - refreshImageBoard() - on game restart
+
+- [] Function - detectCursorOverImage(coordinates) - track cursor position over image
+- [] Function - showTargetingBoxOnClick(coordinates) - display box and dropdown menu when cursor clicks on a person's zone
+- [] Function - selectPersonFromDropdown(selectedName) 
+- [] Function - deselectPerson() - click anywhere on the page other than the co-ordinates to deselect
+  
+- [] Function - getUserNameForScoreboard()
+
+## BACKEND
+
+**setup**
+-[] initializeGame(remainingCharDB, image)
+
+**Timer**
+- [] Function - startTimer()
+- [] Function - endTimer()
+- [] Function - refreshTimer()
+- [] Function - resetTimer()
+
+
+**Scoring - check selection**
+- [] Function - validateSelection(userInput, correctAnswer) 
+- [] Function - handleCorrectAnswer()
+- [] Function - handleIncorrectAnswer()
+- [] Function - updateScore()
+- [] Function - checkWinCondition(currentScore, totalPersons)
+  
+- [] Function - updateRemainingCharacters(remainingCharacterDb, foundCharacterId)
+- [] Function - getRemainingCharacters()
+  
+- [] Function - restartGame()
+- [] Function - resetCharacterDb()
+- [] Function - resetScore() 
+
+**Character Array**
+- [] Create characterData module with hardcoded character objects (id, name, x, y coordinates)
+
+
+**Scoring - record keeping**
+- [] Function - updateFinalScore(userFinalScore, savedScores, username, time)
+- [] Function - validateUsername
+- [] Function - updateScoreDisplay
+
+**Scoring - display**
+
+- [] Function - getHighScores()
+
+  --
+
+That should give you some idea of the project.
+
+I also want to write pseudo code for each of the functions, or at least the structure of  how functions work, before I really start coding. I find it useful to separate the design and architecture separate from the coding. It slows down the process quite a bit but I can already feel that I am avoid design mistakes.
+
+So my question is how do people conventionally name any pseudocode documents?  Individual documents for each function or group of functions.
+
+I'm relearning react and I guess I want to create clean modular code that isn't tightly coupled, where the relationships and flow are clear from the design. In the past I've had things very tightly coupled inadvertently because I lacked an overview of blueprint. I also prop drilled. I want to avoid these things.
