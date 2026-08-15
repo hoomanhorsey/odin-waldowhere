@@ -37,15 +37,35 @@
 
 - [] Come back to this once I've designed the template, to add functionality relating to design.
 - 
-- [] Research vanilla JS vs. React for front end user interaction
+- [x] Research vanilla JS vs. React for front end user interaction - decided to go with React
+
+- **[] GameContainer/ component**
+  - [] state: remainingCharacters, timer, gameStatus
+- 
+  - [] startGame() - displays image, starts timer
+  - [] endGame() - stops timer, disables further clicks, displays score, asks user for name
+  - [] markFoundCharacter()
+    - [] displays name of found character
+    - [] sends callback to TargetingBox to deselect character
+     
+  - [] **GameBoard/ component**
+    - [] refreshes on game restart
+    - [] displays imnage 
+    - [] sendCoords() - onclick, sends cursor co-ordinates to backend for character verification
+
+  - [] **TargetingBox/ component**
+    - [] displays targeting box if co-ordinates match character
+    - [] deselectCharacter() - user clicks anywhere on page to remove targeting box and charactermenu
+      - [] **CharacterMenu/ component**
+        - [] displays menu of remaining characters
+        - [] selectCharacter(characterName) - sends User's character choice to backend for verification
+  
+  - [] **Timer/ component**
+    - [] startTimer() - displays and starts timer on user start
+  
+  - [] **HighScore/ component**
 
 
-- [] Function - refreshImageBoard() - on game restart
-
-- [] Function - detectCursorOverImage(coordinates) - track cursor position over image
-- [] Function - showTargetingBoxOnClick(coordinates) - display box and dropdown menu when cursor clicks on a person's zone
-- [] Function - selectPersonFromDropdown(selectedName) 
-- [] Function - deselectPerson() - click anywhere on the page other than the co-ordinates to deselect
   
 - [] Function - getUserNameForScoreboard()
 
