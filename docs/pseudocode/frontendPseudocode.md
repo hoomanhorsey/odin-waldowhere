@@ -1,13 +1,12 @@
-
-
 ## GameContainer - component
 
 **State-** 
-  - gameStatus (initialized to f'idle')
-    - differnt states will be 'idle', 'playing', 'awaitingUserName' and 'completed'
-  - charactersToFind (initialized from src/data/characters.js)
+  - gameStatus (initialized to'idle')
+    - different states will be 'idle', 'playing', 'awaitingUserName' and 'completed'
+  - gameCharacters (initialized from src/data/characters.js)
   - timeElapsed (initialized to 0) 
-  - characterCoordinates (initalized to false)
+  - userClickCoordinates (initalized to false)
+  - verifiedCharacterCoordinates (initialized to false)
   - selectedCharacter (initialized to false)
 
 **Props**
@@ -21,40 +20,80 @@
         - return a clearInterval(intervalId)
       - Dependency [gameStatus]
 
-    <!-- Wincondition effect -->
+    <!-- Wincondition check -->
+      - if gameStatus === 'playing'
+          - const foundCount = gameCharacters.filter(char => char.found)length 
+          - const totalCount = gameCharacters.length
+          - if foundCount === totalCount {set gameStatus = 'ended'}, 
+      - dependency [characters, gameStatus]
+
+    <!-- Wincondition consequences -->
       - if gameStatus ==='ended'
-        - [todo]
+        - pause timer, 
+        - display results in a modal?
+        - trigger animations????
 
 **Functions**
+   
     - handleImageClick()
       - passed into GameBoard as a callback
-      - sends co-ordinates to backend API to check whether the co-ords correspond with a character
-        - if correct, setCharacterCoordinates (user Coordinates)
-        - if incorrect, setChracterCordinates (false)
-        - CharacterCordinates is a state passed into OutlineCharacter component that renders an outline of the char depending on state.
 
-    - handleCharacterSubmit(selectedCharacter, characterCoordinates)
-      - sends selectedCharacter and characterCoordinates to backend.
+      - if gameStatus === 'playing'
+        - sends co-ordinates to backend API to check whether the co-ords correspond with a character
+          - const result = await api.verifyLocation(coordinates)
+          - result will be in the form
+            - { success: true, coordinates: {x, y} }
+            - { success: false, error: "message" }
+          - if result.success === true, setVerifiedCharacterCoordinates (user Coordinates)
+          - else, setVerifiedCharacterCoordinates (false)
+        - verifiedCharacterCordinates is a state passed into OutlineCharacter component that renders an outline of the char depending on state.
+
+    - handleCharacterSubmit(selectedCharacter, userClickCoordinates)
+      - sends selectedCharacter and userClickCoordinates to backend.
+      - result will be in the form
+        - { success: true, characterId: 123 }
+        - { success: false, error: "incorrect selection" }
       - if correct, 
         - displays correct
-        - remove selectedCharacter from charactersToFind
+        - set 'found' value of selectedCharacter to true in from gameCharacters
       - if incorrect
         - displays 'incorrect'
+     
+    - onSaveScore(username, timeElapsed)
+      - sends userName and timeElapsed to leaderboard array
+        - result = await api.saveScore
+        - on result = success, setGameStatus ('completed')
+       
+    - restartGame()
+      - setGameStatus('idle')
+      - setTimeElapsed(0)
+      - setVerifiedCharacterCoordinates(false)
+      - setUserClickCoordinates(false)
+      - setSelectedCharacter(false)
+      - reinitialize gameCharacters with found: false for all
+
   
 
 **Return**
 
 if gameStatus = 'idle';
-    - Start button with onClick that setsGameStatus('playing')
+    - return < Start /> button with onClick that setsGameStatus('playing')
   
-if gameStatus = 'playing':
-- **GameBoard - component**
-        - prop: handleFoundCharacter={handleFoundCharacter} 
-- **Timer - component**
-        - prop: timeElapsed={timeElapsed}
-
-
-
+if gameStatus = 'playing' || 'ended' || 'completed':
+  - return 
+    - **GameBoard - component**
+            - prop: handleFoundCharacter={handleFoundCharacter} 
+    - **Timer - component**
+            - prop: timeElapsed={timeElapsed}
+  
+    if gameStatus = 'ended'
+      - **GameResultsModal**
+      - prop: timeElapsed={timeElapsed}
+      - prop: onSaveScore()
+    if gameStatus = 'completed'- 
+      - **Leaderboard**
+      - prop: restartGame()
+  
 
 ## GameBoard - component
 
@@ -62,7 +101,7 @@ if gameStatus = 'playing':
 
 **Props**
     - handleImageClick()
-    - charactersToFind - state
+    - gameCharacters - state
     - gameStatus - state
 
 **Effects**
@@ -70,16 +109,8 @@ if gameStatus = 'playing':
 **Functions**
 
 **Return**
-
-if gameStatus = 'playing'
     - JSX
       - gameImage - onClick handleImageClick(Coordinates)
-if gameStatus = 'awaitingUsername'
-    - todo
-if gameStatus = 'completed'
-    - todo
-if gameStatus = 'idle'
-    - todo
 
 
 ## OutlineFoundCharacter - component
@@ -87,12 +118,12 @@ if gameStatus = 'idle'
 **State**
   
 **Props**
-    - characterCoordinates -state
+    - verifiedCharacterCoordinates -state
 
 **Effects**
 **Functions**
 **Return**
-if characterCordinates != false:
+if verifiedCharacterCoordinates != false:
     - JSX
       - Outline overlay of character
 
@@ -102,36 +133,34 @@ if characterCordinates != false:
     - 
   
 **Props**
-    - characterCoordinates - state
-    - charactersToFind - state
+    - verifiedCharacterCoordinates - state
+    - gameCharacters - state
   
     - handleCharacterSubmit()
 
 **Effects**
 **Functions**
 **Return**
-if characterCordinates != false:
+if verifiedCharacterCoordinates != false:
     - JSX
       - dispay drop down menu of characters - onSubmit handleCharacterSubmit(selectedCharacter)
 
 ## DisplayFoundCharacters
-
 **State**
     - 
   
 **Props**
-    - charactersToFind - state
+    - gameCharacters - state
   
 **Effects**
 **Functions**
 **Return**
 - JSX
-  - Filter charactersToFind for found: true entries
+  - Filter gameCharacters for found: true entries
   - Render name label positioned at x, y coordinates for each
 
 
 ## Timer - component
-
 **State**
 **Props**
 **Effects**
@@ -140,19 +169,20 @@ if characterCordinates != false:
     - JSX 
       - Timer element
 
+## GameResults Modal - component
 
+**State**
 
-
-- game display format
-
-    game page is made up of the following components
-
-    <scoreBoard />
-    <gameBoard />
-
-
-
-- Function - refreshImageBoard()
-
-    returns boardImage in jsx
+**Props**
+  - timeElapsed - state
+  - gameRestart()
+**Effects**
+**Functions**
+**Return**
+  -  JSX
+     -  display final elapsed time
+     -  input field for username
+     -  onclick = onSaveScore(username, timeElapsed)"
+     -  onclick 'Playagain' button - calls restartGame()
+     - setGameStatus = 'complete'
 
