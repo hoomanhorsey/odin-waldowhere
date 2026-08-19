@@ -39,85 +39,57 @@
 - 
 - [x] Research vanilla JS vs. React for front end user interaction - decided to go with React
 
-- **[] GameContainer/ component**
-  - [] state: remainingCharacters, timer, gameStatus
-- 
-  - [] startGame() - displays image, starts timer
-  - [] endGame() - stops timer, disables further clicks, displays score, asks user for name
-  - [] markFoundCharacter()
-    - [] displays name of found character
-    - [] sends callback to TargetingBox to deselect character
-     
-  - [] **GameBoard/ component**
-    - [] refreshes on game restart
-    - [] displays imnage 
-    - [] sendCoords() - onclick, sends cursor co-ordinates to backend for character verification
-
-  - [] **TargetingBox/ component**
-    - [] displays targeting box if co-ordinates match character
-    - [] deselectCharacter() - user clicks anywhere on page to remove targeting box and charactermenu
-      - [] **CharacterMenu/ component**
-        - [] displays menu of remaining characters
-        - [] selectCharacter(characterName) - sends User's character choice to backend for verification
-  
-  - [] **Timer/ component**
-    - [] startTimer() - displays and starts timer on user start
-  
-  - [] **HighScore/ component**
-
-
-  
-- [] Function - getUserNameForScoreboard()
+- **[x] GameContainer/ component**
+  - [x] **GameBoard/ component**
+  - [x] **OutlineFoundCharacter/ component**
+  - [x] **CharacterMenu/ component**
+  - [x] **DisplayFoundCharacteres/ component**
+  - [x] **Timer/ component**  
+  - [x] **GameResultsModal/ component**
+  - [x] **Leaderboard/ component**
 
 ## BACKEND
 
-**setup**
--[] initializeGame(remainingCharDB, image)
+**gameLogic**
 
-**Timer**
-- [] Function - startTimer()
-- [] Function - endTimer()
-- [] Function - refreshTimer()
-- [] Function - resetTimer()
+- [API] - verifyLocation(coordinates)  
+  - frontend trigger: handleImageClick  
+  - operation:  
+    - calls gameDB to check if coordinates correspond with a character.  
+  - returns:  
+    - { success: true, coordinates: {x, y} }  
+    - { success: false, error: "message" }  
 
+- [API] - verifyCharacterGuess(selectedCharacter, userClickCoordinates)  
+  - frontend trigger: handleCharacterSubmit  
+  - operation:  
+    - calls gameDB to check that selectedCharacter co-ordinates match range userClickCoordinates
+  - returns:  
+    - { success: true, characterId: 123 }  
+    - { success: false, error: "incorrect selection" }  
+  
 
 **Scoring - check selection**
-- [] Function - validateSelection(userInput, correctAnswer) 
-- [] Function - handleCorrectAnswer()
-- [] Function - handleIncorrectAnswer()
-- [] Function - updateScore()
-- [] Function - checkWinCondition(currentScore, totalPersons)
-  
-- [] Function - updateRemainingCharacters(remainingCharacterDb, foundCharacterId)
-- [] Function - getRemainingCharacters()
-  
-- [] Function - restartGame()
-- [] Function - resetCharacterDb()
-- [] Function - resetScore() 
+
+- [API] - saveScore(username, timeElapsed)  
+  - frontend trigger: onSaveScore  
+  - operation:  
+    - inserts username and timeElapsed into leaderboardDB  
+    - returns  
+      - { success: true, message: "Score saved", leaderboard: leaderboard }
+      - { success: fail, error: "Username is required", "Username exceeds 50 characters", "Database error"}  
+  - [Note] - leaderboard cannot be retrieved without a save game. New API needed if there is a need to retrieve the leaderboard separately.  
+
+**Timer**
+
+Possible time verification backend  
+
+- startStartTime()  
+- when game starts front end sends a request to  backed for a timestamp, which it returns and saves as  start time in state.  Then when game ends, the frontend sends a request to backend for another timestamp, which it returns and saves in state.  
+- Then the endtime is subtracted from the start time. If there is a greater than 5 second difference between this time period and the time elapsed then the game will throw and error and say there is a timing irregularlity.
+
 
 **Character Array**
-- [] Create characterData module with hardcoded character objects (id, name, x, y coordinates)
+- [] Create characterData module with hardcoded character objects (id, name, x coordinates, y coordinates, found)
 
 
-**Scoring - record keeping**
-- [] Function - updateFinalScore(userFinalScore, savedScores, username, time)
-- [] Function - validateUsername
-- [] Function - updateScoreDisplay
-
-**Scoring - display**
-
-- [] Function - getHighScores()
-
-  
-
-
-- [] Function - 
-- [] Function - 
-- [] Function - 
-- [] Function - 
-- [] Function - 
-- [] Function - 
-- [] Function - 
-- [] Function - 
-- [] Function - 
-- [] Function - 
