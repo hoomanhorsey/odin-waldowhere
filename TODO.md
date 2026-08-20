@@ -1,3 +1,44 @@
+Notes on task order
+
+Back to coding, I think I am going to do this.
+
+- commit my backend pseudocode file
+- set up prisma and my prisma schemas
+- merge setup branch to main
+- create a new branch, backend- app
+- create a app.js main backend file.
+- create routes, controllers and repository files.
+- insert placeholder functions>
+
+Or should I work on front end at one of the stages?
+
+Or can you reocmmend a different order?
+
+Your order is reasonable. A few considerations:
+
+Your sequence:
+
+    Commit pseudocode (checkpoint).
+    Set up Prisma schemas (defines database structure).
+    Merge to main (stable state).
+    Create backend structure (routes, controllers, repository with placeholders).
+
+This establishes backend skeleton before implementation, which is sound.
+
+Alternatives to consider:
+
+    Interleave frontend work: Once Prisma schemas are defined, the frontend knows the API contract (endpoint paths, request/response shapes). You could build frontend components in parallel with backend implementation rather than waiting for the full backend. This allows both to develop simultaneously and catch contract mismatches early.
+
+    Implement one full endpoint first: Pick one endpoint (e.g., verifyLocation), implement it completely (schema → repository → controller → route → frontend integration), then repeat for others. This validates your architecture with real code before scaling up.
+
+    Frontend-first stub: Build frontend components with mock API calls first, then wire backend endpoints as they are completed. Ensures frontend requirements are clear before backend implementation.
+
+Recommendation: Your sequence is solid. After merging to main, consider whether frontend and backend can proceed in parallel (they can, with clear API contracts from your pseudocode). Avoid waiting for one side to finish entirely before the other starts.
+
+Which approach fits your workflow preference?
+
+
+
 ## SETUP
 
 **POSTGRES**
@@ -52,44 +93,15 @@
 
 **gameLogic**
 
-- [API] - verifyLocation(coordinates)  
-  - frontend trigger: handleImageClick  
-  - operation:  
-    - calls gameDB to check if coordinates correspond with a character.  
-  - returns:  
-    - { success: true, coordinates: {x, y} }  
-    - { success: false, error: "message" }  
-
-- [API] - verifyCharacterGuess(selectedCharacter, userClickCoordinates)  
-  - frontend trigger: handleCharacterSubmit  
-  - operation:  
-    - calls gameDB to check that selectedCharacter co-ordinates match range userClickCoordinates
-  - returns:  
-    - { success: true, characterId: 123 }  
-    - { success: false, error: "incorrect selection" }  
-  
+- [] [API] - verifyLocation(coordinates)  
+- [] [API] - verifyCharacterGuess(selectedCharacter, userClickCoordinates)    
 
 **Scoring - check selection**
 
-- [API] - saveScore(username, timeElapsed)  
-  - frontend trigger: onSaveScore  
-  - operation:  
-    - inserts username and timeElapsed into leaderboardDB  
-    - returns  
-      - { success: true, message: "Score saved", leaderboard: leaderboard }
-      - { success: fail, error: "Username is required", "Username exceeds 50 characters", "Database error"}  
-  - [Note] - leaderboard cannot be retrieved without a save game. New API needed if there is a need to retrieve the leaderboard separately.  
+- [] [API] - saveScore(username, timeElapsed)  
 
 **Timer**
 
-Possible time verification backend  
-
-- startStartTime()  
-- when game starts front end sends a request to  backed for a timestamp, which it returns and saves as  start time in state.  Then when game ends, the frontend sends a request to backend for another timestamp, which it returns and saves in state.  
-- Then the endtime is subtracted from the start time. If there is a greater than 5 second difference between this time period and the time elapsed then the game will throw and error and say there is a timing irregularlity.
-
-
 **Character Array**
-- [] Create characterData module with hardcoded character objects (id, name, x coordinates, y coordinates, found)
 
 
