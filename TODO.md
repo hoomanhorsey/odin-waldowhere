@@ -98,7 +98,7 @@ Which approach fits your workflow preference?
 
 **Scoring - check selection**
 
-- [] [API] - saveScore(username, timeElapsed)  
+- [] [API] - saveScore(username, elapsedTimepsed)  
 
 **Timer**
 

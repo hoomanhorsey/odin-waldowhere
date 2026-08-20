@@ -4,7 +4,7 @@
   - gameStatus (initialized to'idle')
     - different states will be 'idle', 'playing', 'awaitingUserName' and 'completed'
   - gameCharacters (initialized from src/data/characters.js)
-  - timeElapsed (initialized to 0) 
+  - elapsedTimepsed (initialized to 0) 
   - userClickCoordinates (initalized to false)
   - verifiedCharacterCoordinates (initialized to false)
   - selectedCharacter (initialized to false) 
@@ -12,10 +12,10 @@
 - 
 - **Props**  
 - **Effects**  
-    - <!-- Timer effect: increment timeElapsed every second while game is  playing -->
+    - <!-- Timer effect: increment elapsedTimepsed every second while game is  playing -->
       - if gameStatus === 'playing'
         -  declares a const intervalId
-        - key const = setInterval() that runs setTimeElapsed, at a 1000ms interval
+        - key const = setInterval() that runs setelapsedTimepsed, at a 1000ms interval
         - return a clearInterval(intervalId)
       - Dependency [gameStatus]
       - [Note] timer does not currently sync with backend. Backend could confirm score by calculating timestamp from first run game call and then compare with timestamp when game ends and sends call to backend
@@ -62,9 +62,9 @@
       - if incorrect
         - displays 'incorrect'
      
-  -  [API] onSaveScore(username, timeElapsed)
-      - sends userName and timeElapsed to backend to save score to database
-        - const result = await api.saveScore(username, timeElapsed)
+  -  [API] onSaveScore(username, elapsedTimepsed)
+      - sends userName and elapsedTimepsed to backend to save score to database
+        - const result = await api.saveScore(username, elapsedTimepsed)
         - returns:
           - { success: true, message: "Score saved", leaderboard: leaderboard }
           - { success: false, error: "Username is required" }
@@ -76,7 +76,7 @@
        
   - restartGame()
       - setGameStatus('idle')
-      - setTimeElapsed(0)
+      - setelapsedTimepsed(0)
       - setVerifiedCharacterCoordinates(false)
       - setUserClickCoordinates(false)
       - setSelectedCharacter(false)
@@ -91,10 +91,10 @@ if gameStatus = 'playing' || 'ended' || 'completed':
     - **GameBoard - component**
             - prop: handleFoundCharacter={handleFoundCharacter} 
     - **Timer - component**
-            - prop: timeElapsed={timeElapsed}
+            - prop: elapsedTimepsed={elapsedTimepsed}
         if gameStatus = 'ended'
           - **GameResultsModal**
-          - prop: timeElapsed={timeElapsed}
+          - prop: elapsedTimepsed={elapsedTimepsed}
           - prop: onSaveScore()
         if gameStatus = 'completed'- 
           - **Leaderboard**
@@ -163,7 +163,7 @@ if verifiedCharacterCoordinates != false:
 
 **State**  
 **Props**  
-  - timeElapsed - state  
+  - elapsedTimepsed - state  
   - onSaveScore()  
 **Effects**  
 **Functions**  
@@ -171,7 +171,7 @@ if verifiedCharacterCoordinates != false:
   -  JSX  
      - display final elapsed time  
      - input field for username  
-       - onclick = onSaveScore(username, timeElapsed)"  
+       - onclick = onSaveScore(username, elapsedTimepsed)"  
 
 ## Leaderboard - component
 **State**  

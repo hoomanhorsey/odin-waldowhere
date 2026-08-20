@@ -1,11 +1,6 @@
 
 
-
-## Routes
-
-
 ## APIs
-
 
 
 **gameLogic**
@@ -16,8 +11,8 @@
   - operation:  
     - calls gameDB to query character coordinates  
     - compares passed coordinates against character array
-    - returns whether a character exists at that location
-  - returns:  
+    - repository funciton returns whether a character exists at that location
+  - API returns to frontend  
     - { success: true}  
     - { success: false, message: 'No character found at these co-ordinates'}
     - { success: false, message: 'server/database error'}
@@ -27,8 +22,7 @@
   - frontend trigger: handleCharacterSubmit  
   - operation:  
     - calls gameDB to verify that selectedCharacter co-ordinates = range userClickCoordinates
-    - returns
-  - returns:  
+  - API returns to frontend  
     - { success: true, characterId: 123 }  
     - { success: false, message: 'User submitted wrong character name'} 
     - { success: false, message: 'Server/database error' } 
@@ -36,20 +30,19 @@
 
 **Scoring - check selection**
 
-- [] [API] - saveScore(username, timeElapsed)
+- [] [API] - saveScore(username, elapsedTimepsed)
   - route - POST /score
-    - Content-Type: application/json
-     {
-        "username" : "username",
-        "timeElapsed": n
-     } 
-      
+    - Content-Type: application/json  
+     {  
+            "username" : "username",  
+            "elapsedTimepsed": n  
+     }   
   - frontend trigger: onSaveScore  
   - operation:  
     - validates username (empty strings, SQL injection etc)
-    - inserts username and timeElapsed into leaderboardDB  
-    - returns leaderboard, sorted by lowest scores, 10 results
-    - returns  
+    - inserts username and elapsedTimepsed into leaderboardDB  
+    - repository function returns leaderboard, sorted by lowest scores, 10 results
+    - API returns to frontend  
       - { success: true, message: "Score saved", leaderboard: leaderboard }
       - { success: false, message: "Username invalid"}
       - { success: false, message: "serverdatabase error"}  
