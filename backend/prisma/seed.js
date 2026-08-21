@@ -1,5 +1,5 @@
-require("dotenv/config");
-const { Pool } = require("pg");
+import "dotenv/config";
+import { Pool } from "pg";
 
 const connectionString = `${process.env.DATABASE_URL}`;
 const pool = new Pool({ connectionString });
@@ -16,7 +16,7 @@ async function main() {
     // create characters
     const charactersData = [
       { name: "John Lennon", x: 123, y: 456 },
-      { name: "Paul McCartney", x: 123, y: 456 },
+      { name: "Paul McCartney", x: 123, y: 666 },
       { name: "Ringo Starr", x: 123, y: 456 },
       { name: "George Harrison", x: 123, y: 456 },
     ];

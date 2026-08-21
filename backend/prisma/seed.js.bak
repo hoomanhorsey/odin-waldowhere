@@ -1,0 +1,54 @@
+import "dotenv/config";
+import { Pool } from "pg";
+import { PrismaPg } from "@prisma/adapter-pg";
+import pkg from "@prisma/client";
+
+const { PrismaClient } = pkg;
+const connectionString = `${process.env.DATABASE_URL}`;
+const pool = new Pool({ connectionString });
+const adapter = new PrismaPg(pool);
+const prisma = new PrismaClient({ adapter });
+
+async function main() {
+  console.log("seeding...");
+
+  // delete existing data
+  await prisma.characters.deleteMany({});
+  await prisma.leaderboard.deleteMany({});
+
+  // create characters
+  const charactersData = [
+    { name: "John Lennon", x: 123, y: 456 },
+    { name: "Paul McCartney", x: 123, y: 456 },
+    { name: "Ringo Starr", x: 123, y: 456 },
+    { name: "George Harrison", x: 123, y: 456 },
+  ];
+
+  await prisma.characters.createMany({ data: charactersData });
+
+  await prisma.leaderboard.createMany({
+    data: [
+      { name: "PAC-MAN", elapsedTime: 999999999 },
+      { name: "DONKEY KONG", elapsedTime: 999999998 },
+      { name: "GALAGA", elapsedTime: 999999997 },
+      { name: "SPACE INVADERS", elapsedTime: 999999996 },
+      { name: "ASTEROIDS", elapsedTime: 999999995 },
+      { name: "CENTIPEDE", elapsedTime: 999999994 },
+      { name: "MS. PAC-MAN", elapsedTime: 999999993 },
+      { name: "FROGGER", elapsedTime: 999999992 },
+      { name: "DEFENDER", elapsedTime: 999999991 },
+      { name: "TEMPEST", elapsedTime: 999999990 },
+    ],
+  });
+
+  console.log("seeding done!");
+}
+
+main()
+  .catch((e) => {
+    console.error(e);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });
