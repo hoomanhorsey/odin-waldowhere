@@ -1,7 +1,19 @@
-import charactersRepository from "../repositories/charactersRepository.js";
+import charactersService from "../services/charactersService.js";
 
 async function verifyLocation(req, res) {
-  //insert code
+  console.log("verifyfunction is being called");
+  const x = req.query.x;
+  const y = req.query.y;
+
+  const charactersArray = await charactersService.verifyLocation();
+  console.log(charactersArray);
+
+  console.log(typeof charactersArray);
+
+  const result = charactersArray.map((item) => {
+    console.log(item.x);
+    console.log(item.y);
+  });
 }
 
 async function verifyCharacterGuess(req, res) {

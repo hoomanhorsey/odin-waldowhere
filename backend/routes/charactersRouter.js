@@ -2,7 +2,7 @@ import { Router } from "express";
 const charactersRouter = Router();
 
 // Controllers
-import charactersController from "../controllers/charactersController";
+import charactersController from "../controllers/charactersController.js";
 
 charactersRouter.get("/verify-location", charactersController.verifyLocation);
 charactersRouter.get(
