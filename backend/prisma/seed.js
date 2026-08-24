@@ -15,10 +15,10 @@ async function main() {
 
     // create characters
     const charactersData = [
-      { name: "John Lennon", x: 123, y: 456 },
-      { name: "Paul McCartney", x: 123, y: 666 },
-      { name: "Ringo Starr", x: 123, y: 456 },
-      { name: "George Harrison", x: 123, y: 456 },
+      { name: "John Lennon", x: 100, y: 100 },
+      { name: "Paul McCartney", x: 400, y: 400 },
+      { name: "Ringo Starr", x: 700, y: 700 },
+      { name: "George Harrison", x: 1000, y: 1000 },
     ];
 
     for (const char of charactersData) {

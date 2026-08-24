@@ -1,24 +1,14 @@
 import { prisma } from "../lib/prisma.js";
 
-// console.log("Prisma instance:", prisma);
-
-// console.log("Characters model:", prisma.characters);
-
 async function getCharacterArray() {
-  const characterArray = await prisma.characters.findMany();
-  console.log("below is my consoeltable thing");
-  console.table(characterArray);
-  return characterArray;
+  try {
+    const characterArray = await prisma.characters.findMany();
+    return characterArray;
+  } catch (error) {
+    console.error(("Failed to fetch character array:", error));
+    throw error;
+  }
 }
-
-//   const result = await prisma.characters.findUnique({
-//     where: {
-//       x: x,
-//       y: y,
-//     },
-//   });
-//   return result;
-// }
 
 async function verifyCharacterGuess(charactername, x, y) {
   //insert code

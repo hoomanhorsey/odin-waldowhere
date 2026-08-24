@@ -2,18 +2,26 @@ import charactersService from "../services/charactersService.js";
 
 async function verifyLocation(req, res) {
   console.log("verifyfunction is being called");
-  const x = req.query.x;
-  const y = req.query.y;
+  const userX = parseInt(req.query.x);
+  const userY = parseInt(req.query.y);
 
-  const charactersArray = await charactersService.verifyLocation();
-  console.log(charactersArray);
+  try {
+    const matchedCharacterCoordinates = await charactersService.verifyLocation(
+      userX,
+      userY,
+    );
 
-  console.log(typeof charactersArray);
-
-  const result = charactersArray.map((item) => {
-    console.log(item.x);
-    console.log(item.y);
-  });
+    if (matchedCharacterCoordinates) {
+      res
+        .status(200)
+        .json({ found: true, coordinates: matchedCharacterCoordinates });
+    } else {
+      res.status(200).json({ found: false, coordinates: null });
+    }
+  } catch (error) {
+    console.error("Error verifying location: ", error);
+    res.status(500).json({ error: "Failed to verify location" });
+  }
 }
 
 async function verifyCharacterGuess(req, res) {
