@@ -10,6 +10,7 @@ async function getCharacterArray() {
   }
 }
 
+/// probably delete this
 async function verifyCharacterGuess(charactername, x, y) {
   //insert code
 }
