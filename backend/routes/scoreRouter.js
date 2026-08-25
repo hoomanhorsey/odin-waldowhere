@@ -1,28 +1,38 @@
-const { Router } = require("express");
-const authRouter = Router();
+import { Router } from "express";
+const scoreRouter = Router();
 
-// Validation
-const userValidator = require("../validators/userValidator");
 
-const verifyToken = require("../middleware/verifyToken.js");
+//TODO implement name validation
+
+// // Validation
+// const userValidator = require("../validators/userValidator");
+
+// const verifyToken = require("../middleware/verifyToken.js");
 
 // Controllers
-const authController = require("../controllers/authController");
+const scoreController = require("../controllers/scoreController");
+
 
 authRouter.post(
-  "/login",
-  userValidator.validateLogin,
-  authController.handleLogin,
-);
-authRouter.post(
-  "/signup",
-  userValidator.validateSignup,
-  authController.handleSignup,
-);
-authRouter.post(
-  "/logout",
-  verifyToken.verifyToken,
-  authController.handleLogout,
+  "/saveScore",
+  // userValidator.validateLogin,
+  scoreController.saveScore,
 );
 
-module.exports = authRouter;
+// authRouter.post(
+//   "/login",
+//   userValidator.validateLogin,
+//   authController.handleLogin,
+// );
+// authRouter.post(
+//   "/signup",
+//   userValidator.validateSignup,
+//   authController.handleSignup,
+// );
+// authRouter.post(
+//   "/logout",
+//   verifyToken.verifyToken,
+//   authController.handleLogout,
+// );
+
+exports default scoreRouter;

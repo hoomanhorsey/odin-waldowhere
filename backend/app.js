@@ -18,7 +18,7 @@ app.use(express.json());
 
 // Route mounting
 app.use("/characters", charactersRouter);
-// app.use("/score", scoreRouter);
+app.use("/score", scoreRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, (error) => {
