@@ -1,10 +1,20 @@
-import charactersRepository from "../repositories/charactersRepository.js";
+import scoreRepository from "../repositories/scoreRepository.js";
 
-async function scoreService() {
-  const updatedLeaderboard = await scoreRepository.addTimeToLeaderboard(
-    name,
-    elaspedTime,
-  );
+async function addScore(name, elapsedTime) {
+  console.log("from service");
+  console.log(name, elapsedTime);
+
+  const { updatedLeaderboard, newEntry } =
+    await scoreRepository.addLeaderboardEntry(name, elapsedTime);
+
+  // Find the rank of the newly created entry
+  const rank =
+    updatedLeaderboard.findIndex((entry) => entry.id === newEntry.id) + 1;
+
+  const topTenLeaderboard = updatedLeaderboard.slice(0, 10);
+
+  console.log("rank", rank);
+  return { topTenLeaderboard, newEntry, rank };
 }
 
 //test this API
@@ -44,18 +54,5 @@ async function verifyCharacterGuess(selectedCharacter, userX, userY) {
 }
 
 export default {
-  verifyLocation,
-  verifyCharacterGuess,
+  addScore,
 };
-
-function matchCharacterCoordinates(characterArray, userX, userY) {
-  const matchedCharacter = characterArray.find((character) => {
-    return (
-      userX <= character.x + TOLERANCE &&
-      userX >= character.x - TOLERANCE &&
-      userY <= character.y + TOLERANCE &&
-      userY >= character.y - TOLERANCE
-    );
-  });
-  return matchedCharacter;
-}

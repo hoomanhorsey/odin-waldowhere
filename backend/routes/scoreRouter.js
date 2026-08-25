@@ -1,7 +1,6 @@
 import { Router } from "express";
 const scoreRouter = Router();
 
-
 //TODO implement name validation
 
 // // Validation
@@ -10,29 +9,21 @@ const scoreRouter = Router();
 // const verifyToken = require("../middleware/verifyToken.js");
 
 // Controllers
-const scoreController = require("../controllers/scoreController");
+import scoreController from "../controllers/scoreController.js";
 
+// for testing as get
+//http://localhost:3000/score/save-score?name=spanky&elapsedTime=234234
 
-authRouter.post(
-  "/saveScore",
+scoreRouter.get(
+  "/save-score",
   // userValidator.validateLogin,
   scoreController.saveScore,
 );
 
-// authRouter.post(
-//   "/login",
-//   userValidator.validateLogin,
-//   authController.handleLogin,
-// );
-// authRouter.post(
-//   "/signup",
-//   userValidator.validateSignup,
-//   authController.handleSignup,
-// );
-// authRouter.post(
-//   "/logout",
-//   verifyToken.verifyToken,
-//   authController.handleLogout,
+// scoreRouter.post(
+//   "/save-score",
+//   // userValidator.validateLogin,
+//   scoreController.saveScore,
 // );
 
-exports default scoreRouter;
+export default scoreRouter;

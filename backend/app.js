@@ -10,7 +10,7 @@ const app = express();
 
 // Route imports
 import charactersRouter from "./routes/charactersRouter.js";
-// import scoreRouter from "./routes/scoreRouter.js";
+import scoreRouter from "./routes/scoreRouter.js";
 
 // app.use(cors()); // enables CORS for ALL routes
 

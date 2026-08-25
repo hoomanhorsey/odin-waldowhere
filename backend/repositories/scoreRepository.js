@@ -1,6 +1,9 @@
 import { prisma } from "../lib/prisma.js";
 
-async function addTimeToLeaderboard(name, elapsedTime) {
+async function addLeaderboardEntry(name, elapsedTime) {
+  console.log("from repo");
+  console.log(name, elapsedTime);
+
   try {
     const newEntry = await prisma.leaderboard.create({
       data: {
@@ -9,14 +12,10 @@ async function addTimeToLeaderboard(name, elapsedTime) {
       },
     });
 
-    const leaderboard = await prisma.leaderboard.findMany({
+    const updatedLeaderboard = await prisma.leaderboard.findMany({
       orderBy: { elapsedTime: "asc" },
     });
-
-    // Find the rank of the newly created entry
-    const rank = leaderboard.findIndex((entry) => entry.id === newEntry.id) + 1;
-
-    return { leaderboard, newEntry, rank };
+    return { updatedLeaderboard, newEntry };
   } catch (error) {
     console.error(("Failed to add time to leaderboard:", error));
     throw error;
@@ -24,5 +23,5 @@ async function addTimeToLeaderboard(name, elapsedTime) {
 }
 
 export default {
-  addTimeToLeaderboard,
+  addLeaderboardEntry,
 };

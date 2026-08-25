@@ -1,8 +1,25 @@
 import scoreService from "../services/scoreService.js";
 
-async function saveScore() {
-  //insert code
+async function saveScore(req, res) {
+  //insert code'
+
+  // add try/catch
+  // add res.json return
+
+  //actually probably passed in JSON
+  const name = req.query.name;
+  const elapsedTime = parseInt(req.query.elapsedTime);
+
+  console.log(name, elapsedTime);
+  const { topTenLeaderboard, newEntry, rank } = await scoreService.addScore(
+    name,
+    elapsedTime,
+  );
+
+  console.table(topTenLeaderboard);
+  console.log(newEntry);
 }
+
 async function verifyLocation(req, res) {
   console.log("verifyfunction is being called");
   const userX = parseInt(req.query.x);
