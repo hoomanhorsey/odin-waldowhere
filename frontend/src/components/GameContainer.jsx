@@ -29,11 +29,18 @@ function GameContainer() {
       );
 
       const data = await response.json();
+      console.log(verifiedCharacterCoordinates);
 
       if (data.success) {
         console.log(data.coordinates);
+        //TODO
+        // You want to set state so that verifiedCharacterCoorindates runs and CharacterMenuyruns.CharacterMenu
+        // setVerifiedCharacterCoordinates, which triggers OutlineFound Charcater
+
+        setVerifiedCharacterCoordinates(data.coordinates);
       } else {
         console.error(data.message);
+        alert("nope!");
       }
     } catch (error) {
       console.error(error);
