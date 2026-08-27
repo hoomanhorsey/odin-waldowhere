@@ -19,31 +19,3 @@ export default {
   getCharacterArray,
   verifyCharacterGuess,
 };
-
-// async function createUser(body, hashedPassword) {
-//   const newUser = await prisma.user.create({
-//     data: {
-//       username: body.username,
-//       email: body.email,
-//       password: hashedPassword,
-//     },
-//   });
-//   console.log("User created:", newUser);
-//   return newUser;
-// }
-
-// async function checkUsernameExists(username) {
-//   const usernameResult = await prisma.user.findUnique({
-//     where: { username: username },
-//   });
-//   return usernameResult;
-// }
-
-// async function checkEmailExists(email) {
-//   const emailResult = await prisma.user.findUnique({
-//     where: { email: email },
-//   });
-//   return emailResult;
-// }
-
-// export default { createUser, checkUsernameExists, checkEmailExists };
