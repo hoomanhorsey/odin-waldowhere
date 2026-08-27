@@ -19,11 +19,26 @@ function GameContainer() {
   const [selectedCharacter, setSelectedCharacter] = useState(false);
   const [leaderboard, setLeaderboard] = useState(null);
 
-  function handleImageClick() {
+  async function handleImageClick(event) {
     console.log("Somebody clicked the image!!!!");
     console.log(event.clientX, event.clientY);
-  }
 
+    try {
+      const response = await fetch(
+        `http://localhost:3000/characters/verify-location?x=${event.clientX}&y=${event.clientY}`,
+      );
+
+      const data = await response.json();
+
+      if (data.success) {
+        console.log(data.coordinates);
+      } else {
+        console.error(data.message);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
   return (
     <>
       Hello
@@ -37,5 +52,4 @@ function GameContainer() {
     </>
   );
 }
-
 export default GameContainer;
