@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, version } from "react";
+import "./GameContainer.css";
 
 import GameBoard from "./GameBoard.jsx";
 import OutlineFoundCharacter from "./OutlineFoundCharacter.jsx";
@@ -41,22 +42,25 @@ function GameContainer() {
       } else {
         console.error(data.message);
         alert("nope!");
+        setVerifiedCharacterCoordinates(false);
       }
     } catch (error) {
       console.error(error);
     }
   }
   return (
-    <>
+    <div className="GameContainer">
       Hello
       <GameBoard handleImageClick={handleImageClick} />
       <Timer />
-      <OutlineFoundCharacter />
+      <OutlineFoundCharacter
+        verifiedCharacterCoordinates={verifiedCharacterCoordinates}
+      />
       <CharacterMenu />
       <DisplayFoundCharacteres />
       <GameResultModal />
       <Leaderboard />
-    </>
+    </div>
   );
 }
 export default GameContainer;
