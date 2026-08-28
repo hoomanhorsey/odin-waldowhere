@@ -57,7 +57,9 @@ function GameBoard({ gameStatus, setGameStatus }) {
     }
   }
 
-  async function handleCharacterSubmit(event) {}
+  async function handleCharacterSubmit(event) {
+    alert("you've submitted someone good o you");
+  }
 
   return (
     <>
