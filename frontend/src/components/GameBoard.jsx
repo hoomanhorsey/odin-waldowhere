@@ -41,7 +41,6 @@ function GameBoard() {
         //TODO
         // You want to set state so that verifiedCharacterCoorindates runs and CharacterMenuyruns.CharacterMenu
         // setVerifiedCharacterCoordinates, which triggers OutlineFound Charcater
-
         setVerifiedCharacterCoordinates(data.coordinates);
       } else {
         console.error(data.message);
@@ -57,6 +56,7 @@ function GameBoard() {
     <>
       <div className="gameImage">
         <img ref={imageRef} src={gameImage} onClick={handleImageClick} />
+
         <OutlineFoundCharacter
           verifiedCharacterCoordinates={verifiedCharacterCoordinates}
           imageBounds={imageBounds}

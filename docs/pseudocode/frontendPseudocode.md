@@ -5,8 +5,6 @@
     - different states will be 'idle', 'playing', 'awaitingUserName' and 'completed'
   - gameCharacters (initialized from src/data/characters.js)
   - elapsedTime (initialized to 0)
-  - userClickCoordinates (initalized to false)
-  - verifiedCharacterCoordinates (initialized to false)
   - selectedCharacter (initialized to false)
   - leaderboard (initaliazed to null)
 -
@@ -38,22 +36,9 @@
 
 **Functions**
 
-- [API] handleImageClick()
-  - passed into GameBoard as a callback
-
-  - if gameStatus === 'playing'
-    - sends co-ordinates to backend API to check whether the co-ords correspond with a character
-      - const result = await api.verifyLocation(coordinates)
-      - returns
-        - { success: true, coordinates: {x, y} }
-        - { success: false, error: "message" }
-      - if result.success === true, setVerifiedCharacterCoordinates (user Coordinates)
-      - else, setVerifiedCharacterCoordinates (false)
-    - verifiedCharacterCordinates is a state passed into OutlineCharacter component that renders an outline of the char depending on state.
-
-- [API] handleCharacterSubmit(selectedCharacter, userClickCoordinates)
+- [API] handleCharacterSubmit(selectedCharacter, verifiedCharacterCoordinates)
   - sends selectedCharacter and userClickCoordinates to backend.
-  - const restult = await api.verifyCharacterGuess(selectedCharacter, userClickCoordiantes)
+  - const restult = await api.verifyCharacterGuess(selectedCharacter, verifiedCharacterCoordinates)
   - returns
     - { success: true, characterId: 123 }
     - { success: false, error: "incorrect selection" }
@@ -91,24 +76,44 @@ if gameStatus = 'playing' || 'ended' || 'completed':
   - **Timer - component** - prop: elapsedTimepsed={elapsedTimepsed}
     if gameStatus = 'ended' - **GameResultsModal** - prop: elapsedTimepsed={elapsedTimepsed} - prop: onSaveScore()
     if gameStatus = 'completed'- - **Leaderboard** - prop: restartGame()
-  - **OutlineFoundCharacter - component**
-  - **CharacterMenu - component**
-  - **DsplayFoundCharacters - component**
 
 ## GameBoard - component
 
-**State**  
+**State**
+
+- imageBounds (DOMRect from the image element)
+
+- verifiedCharacterCoordinates (initialized to false)
+
 **Props**
 
-- handleImageClick()
 - gameCharacters - state
 - gameStatus - state
+- handleCharacterSubmit - function (passed to CharacterMenu)
 
 **Effects**  
-**Functions**  
+**Functions**
+
+- [API] handleImageClick()
+  - if gameStatus === 'playing'
+    - Receives click coordinates
+    - Converts to image-relative using getBoundingClientRect()
+    - sends co-ordinates to backend API to check whether the co-ords correspond with a character
+      - const result = await api.verifyLocation(coordinates)
+      - returns
+        - { success: true, coordinates: {x, y} }
+        - { success: false, error: "message" }
+      - if result.success === true, setVerifiedCharacterCoordinates (user Coordinates)
+      - else, setVerifiedCharacterCoordinates (false)
+    - verifiedCharacterCordinates is a state passed into OutlineCharacter component that renders an outline of the char depending on state.
+
 **Return**
 
 - JSX - gameImage - onClick handleImageClick(Coordinates)
+- **OutlineFoundCharacter - component**
+- **CharacterMenu - component**
+  - props - handleCharacterSubmit - function
+- **DsplayFoundCharacters - component**
 
 ## OutlineFoundCharacter - component
 
@@ -120,15 +125,18 @@ if gameStatus = 'playing' || 'ended' || 'completed':
   **Functions**  
   **Return**  
   if verifiedCharacterCoordinates != false:
-- JSX
-- Outline overlay of character
+  - JSX
+  - Outline overlay of character
 
 ## CharacterMenu - component
 
 **State**  
 **Props**
 
-- verifiedCharacterCoordinates - state - gameCharacters - state - handleCharacterSubmit()
+- verifiedCharacterCoordinates - state -
+- gameCharacters - state
+- gameStatus - state
+- handleCharacterSubmit()
 
 **Effects**  
 **Functions**  

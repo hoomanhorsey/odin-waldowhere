@@ -14,7 +14,7 @@
     - { success: false, message: 'No character found at these co-ordinates'}
     - { success: false, message: 'server/database error'}
 
-- [] [API] - verifyCharacterGuess(selectedCharacter, userClickCoordinates)
+- [] [API] - verifyCharacterGuess(selectedCharacter, verifiedCharacterCoordinates)
   - route - GET /characters/verify-character-guess?selected-character=x&click-x=n&click-y=n
   - frontend trigger: handleCharacterSubmit
   - operation:
