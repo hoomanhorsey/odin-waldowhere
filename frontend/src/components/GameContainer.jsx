@@ -7,7 +7,9 @@ import GameResultModal from "./GameResultsModal.jsx";
 import Leaderboard from "./Leaderboard.jsx";
 
 function GameContainer() {
-  const [gameStatus, setGameStatus] = useState("IDLE");
+  const [gameStatus, setGameStatus] = useState("TARGETING");
+  // IDLE, TARGETING, SELECTINGCHARACTER, WON, COMPLETED
+
   const [gameCharacters, setGameCharacters] = useState(
     "get from API later I think",
   );
@@ -20,7 +22,7 @@ function GameContainer() {
   return (
     <div className="GameContainer">
       Hello
-      <GameBoard />
+      <GameBoard gameStatus={gameStatus} setGameStatus={setGameStatus} />
       <Timer />
       <GameResultModal />
       <Leaderboard />

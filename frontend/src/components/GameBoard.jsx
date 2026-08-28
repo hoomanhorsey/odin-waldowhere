@@ -8,7 +8,7 @@ import DisplayFoundCharacters from "./DisplayFoundCharacters.jsx";
 
 import gameImage from "../assets/gameImage65.jpg";
 
-function GameBoard() {
+function GameBoard({ gameStatus, setGameStatus }) {
   const [verifiedCharacterCoordinates, setVerifiedCharacterCoordinates] =
     useState(false);
   const [imageBounds, setImageBounds] = useState(null);
@@ -16,6 +16,8 @@ function GameBoard() {
   const imageRef = useRef(null);
 
   async function handleImageClick(event) {
+    console.log(gameStatus);
+    if (gameStatus !== "TARGETING") return;
     console.log("Somebody clicked the image!!!!");
 
     // Get the image's position and size in the viewport
@@ -38,10 +40,14 @@ function GameBoard() {
 
       if (data.success) {
         console.log(data.coordinates);
+
+        alert("Yup!   " + imageX + " | " + imageY);
+
         //TODO
         // You want to set state so that verifiedCharacterCoorindates runs and CharacterMenuyruns.CharacterMenu
         // setVerifiedCharacterCoordinates, which triggers OutlineFound Charcater
         setVerifiedCharacterCoordinates(data.coordinates);
+        setGameStatus("SELECTINGCHARACTER");
       } else {
         console.error(data.message);
         alert("nope!   " + imageX + " | " + imageY);
@@ -52,6 +58,8 @@ function GameBoard() {
     }
   }
 
+  async function handleCharacterSubmit(event) {}
+
   return (
     <>
       <div className="gameImage">
@@ -60,6 +68,7 @@ function GameBoard() {
         <OutlineFoundCharacter
           verifiedCharacterCoordinates={verifiedCharacterCoordinates}
           imageBounds={imageBounds}
+          handleCharacterSubmit={handleCharacterSubmit}
         />
       </div>
 

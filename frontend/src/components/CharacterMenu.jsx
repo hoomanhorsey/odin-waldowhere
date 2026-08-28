@@ -1,4 +1,8 @@
-function CharacterMenu() {
+function CharacterMenu(verifiedCharacterCoordinates) {
+  if (!verifiedCharacterCoordinates) {
+    return null;
+  }
+
   return <>CharacterMenu placeholder</>;
 }
 
