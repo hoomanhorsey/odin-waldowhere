@@ -2,8 +2,7 @@ import { useState, useRef, version } from "react";
 
 import "./GameBoard.css";
 
-import OutlineFoundCharacter from "./OutlineFoundCharacter.jsx";
-import CharacterMenu from "./CharacterMenu.jsx";
+import CharacterTargetingUI from "./CharacterTargetingUI.jsx";
 import DisplayFoundCharacters from "./DisplayFoundCharacters.jsx";
 
 import gameImage from "../assets/gameImage65.jpg";
@@ -65,16 +64,13 @@ function GameBoard({ gameStatus, setGameStatus }) {
       <div className="gameImage">
         <img ref={imageRef} src={gameImage} onClick={handleImageClick} />
 
-        <OutlineFoundCharacter
+        <CharacterTargetingUI
           verifiedCharacterCoordinates={verifiedCharacterCoordinates}
           imageBounds={imageBounds}
           handleCharacterSubmit={handleCharacterSubmit}
         />
       </div>
 
-      <CharacterMenu
-        verifiedCharacterCoordinates={verifiedCharacterCoordinates}
-      />
       <DisplayFoundCharacters />
     </>
   );

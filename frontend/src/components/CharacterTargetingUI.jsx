@@ -1,4 +1,4 @@
-function OutlineFoundCharacter({
+function CharacterTargetingUI({
   verifiedCharacterCoordinates,
   imageBounds,
   handleCharacterSubmit,
@@ -60,11 +60,14 @@ function OutlineFoundCharacter({
           top: `${y - radius}px`,
           width: `${radius * 12}px`,
           height: `${radius * 12}px`,
-          pointerEvents: "none", // allows clicks to pass through
+          pointerEvents: "auto", // allows clicks to pass through
           border: "4px solid blue", // temporary debug line
         }}
       >
-        <select>
+        <select
+          onClick={(e) => e.stopPropagation()}
+          onChange={(e) => setSelectedCharacter(e.target.value)}
+        >
           <option>Choose a character</option>
           <option>Alice</option>
           <option>Bob</option>
@@ -75,4 +78,4 @@ function OutlineFoundCharacter({
   );
 }
 
-export default OutlineFoundCharacter;
+export default CharacterTargetingUI;
