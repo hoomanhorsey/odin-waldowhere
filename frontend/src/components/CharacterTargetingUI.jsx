@@ -2,22 +2,15 @@ function CharacterTargetingUI({
   verifiedCharacterCoordinates,
   imageBounds,
   handleCharacterSubmit,
+  selectedCharacter,
+  setSelectedCharacter,
 }) {
-  console.log("verifiedCharacterCoordinates:", verifiedCharacterCoordinates);
-  console.log("imageBounds:", imageBounds);
-
   if (!verifiedCharacterCoordinates) {
     return null;
   }
 
-  // Check the actual structure
-  console.log("Type:", typeof verifiedCharacterCoordinates);
-  console.log("Keys:", Object.keys(verifiedCharacterCoordinates));
-  console.log("Full object:", JSON.stringify(verifiedCharacterCoordinates));
-
   const [x, y] = verifiedCharacterCoordinates;
-  // const absoluteX = imageBounds.left + x;
-  // const absoluteY = imageBounds.top + y;
+
   const radius = 15; // 20px diameter circle
 
   console.log(`SVG position - left: ${x - radius}, top: ${y - radius}`);
@@ -72,7 +65,14 @@ function CharacterTargetingUI({
           <option>Alice</option>
           <option>Bob</option>
         </select>
-        <button onClick={handleCharacterSubmit}>Submit</button>
+        <button
+          onClick={handleCharacterSubmit}
+          disabled={
+            !selectedCharacter || selectedCharacter === "Choose a character"
+          }
+        >
+          Submit
+        </button>
       </div>
     </>
   );

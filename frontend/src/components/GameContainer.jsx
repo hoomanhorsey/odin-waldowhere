@@ -21,7 +21,6 @@ function GameContainer() {
 
   return (
     <div className="GameContainer">
-      Hello
       <GameBoard gameStatus={gameStatus} setGameStatus={setGameStatus} />
       <Timer />
       <GameResultModal />

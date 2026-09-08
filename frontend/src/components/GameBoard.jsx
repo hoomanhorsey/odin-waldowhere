@@ -11,13 +11,13 @@ function GameBoard({ gameStatus, setGameStatus }) {
   const [verifiedCharacterCoordinates, setVerifiedCharacterCoordinates] =
     useState(false);
   const [imageBounds, setImageBounds] = useState(null);
+  const [selectedCharacter, setSelectedCharacter] = useState("");
 
   const imageRef = useRef(null);
 
   async function handleImageClick(event) {
-    console.log(gameStatus);
+    console.log("GAMESTATUS: " + gameStatus);
     if (gameStatus !== "TARGETING") return;
-    console.log("Somebody clicked the image!!!!");
 
     // Get the image's position and size in the viewport
     const imageBounds = imageRef.current.getBoundingClientRect();
@@ -26,8 +26,6 @@ function GameBoard({ gameStatus, setGameStatus }) {
     // Convert viewport coordinates to image-relative coordinates
     const imageX = event.clientX - imageBounds.left;
     const imageY = event.clientY - imageBounds.top;
-
-    console.log(imageX, imageY);
 
     try {
       const response = await fetch(
@@ -38,9 +36,7 @@ function GameBoard({ gameStatus, setGameStatus }) {
       console.log(verifiedCharacterCoordinates);
 
       if (data.success) {
-        console.log(data.coordinates);
-
-        alert("Yup!   " + imageX + " | " + imageY);
+        alert("Yup!   " + imageX + " | " + imageY + " | " + data.coordinates);
 
         //TODO
         // You want to set state so that verifiedCharacterCoorindates runs and CharacterMenuyruns.CharacterMenu
@@ -57,8 +53,13 @@ function GameBoard({ gameStatus, setGameStatus }) {
     }
   }
 
-  async function handleCharacterSubmit(event) {
-    alert("you've submitted someone good o you");
+  async function handleCharacterSubmit() {
+    if (!selectedCharacter || selectedCharacter === "Choose a character") {
+      console.warn("Please select a character first");
+      return;
+    }
+    alert("you've submitted someone good o you: " + selectedCharacter);
+    console.log("NEEDS TO SEND REQUEST TO BACKEND");
   }
 
   return (
@@ -70,6 +71,8 @@ function GameBoard({ gameStatus, setGameStatus }) {
           verifiedCharacterCoordinates={verifiedCharacterCoordinates}
           imageBounds={imageBounds}
           handleCharacterSubmit={handleCharacterSubmit}
+          selectedCharacter={selectedCharacter}
+          setSelectedCharacter={setSelectedCharacter}
         />
       </div>
 
