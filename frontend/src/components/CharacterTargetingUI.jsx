@@ -62,11 +62,11 @@ function CharacterTargetingUI({
           onChange={(e) => setSelectedCharacter(e.target.value)}
         >
           <option>Choose a character</option>
-          <option>Alice</option>
+          <option>Paul McCartney</option>
           <option>Bob</option>
         </select>
         <button
-          onClick={handleCharacterSubmit}
+          onClick={() => handleCharacterSubmit(x, y)}
           disabled={
             !selectedCharacter || selectedCharacter === "Choose a character"
           }

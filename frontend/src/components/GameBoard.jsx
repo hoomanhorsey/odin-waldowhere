@@ -53,13 +53,32 @@ function GameBoard({ gameStatus, setGameStatus }) {
     }
   }
 
-  async function handleCharacterSubmit() {
+  async function handleCharacterSubmit(x, y) {
     if (!selectedCharacter || selectedCharacter === "Choose a character") {
       console.warn("Please select a character first");
       return;
     }
-    alert("you've submitted someone good o you: " + selectedCharacter);
-    console.log("NEEDS TO SEND REQUEST TO BACKEND");
+
+    alert("you've submitted someone good o you: " + selectedCharacter + x + y);
+
+    try {
+      const response = await fetch(
+        `http://localhost:3000/characters/verify-character-guess?selectedCharacter=${selectedCharacter}&x=${x}&y=${y}`,
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      if (data.success) {
+        alert("It was the right character!" + data.characterId);
+      } else {
+        console.error(data.message);
+        alert("Wrong character");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
