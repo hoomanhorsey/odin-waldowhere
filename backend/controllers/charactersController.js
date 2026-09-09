@@ -1,5 +1,27 @@
 import charactersService from "../services/charactersService.js";
 
+async function getNames(req, res) {
+  console.log("getNames is being called");
+  try {
+    const names = await charactersService.getNames();
+
+    if (names) {
+      res.status(200).json({
+        success: true,
+        characterNames: names,
+      });
+    } else {
+      res.status(200).json({
+        success: false,
+        message: "No characters found in db",
+      });
+    }
+  } catch (error) {
+    console.error("Error accessing db: ", error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+}
+
 async function verifyLocation(req, res) {
   console.log("verifyfunction is being called");
   const userX = parseInt(req.query.x);
@@ -59,6 +81,7 @@ async function verifyCharacterGuess(req, res) {
 }
 
 export default {
+  getNames,
   verifyLocation,
   verifyCharacterGuess,
 };

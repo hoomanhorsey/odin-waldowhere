@@ -5,8 +5,25 @@ const TOLERANCE_FACTOR = 20;
 const TOLERANCE = IMAGE_SIZE / TOLERANCE_FACTOR;
 
 //test this API
+//http://localhost:3000/characters/names
+async function getNames() {
+  console.log("getnames service is called");
+  const characterArray = await charactersRepository.getCharacterArray();
+
+  if (characterArray) {
+    return characterArray.map((char) => ({
+      id: char.id,
+      name: char.name,
+      found: char.found,
+    }));
+  }
+  return [];
+}
+
+//test this API
 //http://localhost:3000/characters/verify-location?x=399&y=399
 async function verifyLocation(userX, userY) {
+  console.log("verifyLocation called");
   const characterArray = await charactersRepository.getCharacterArray();
 
   const matchedCharacter = matchCharacterCoordinates(
@@ -30,6 +47,8 @@ async function verifyLocation(userX, userY) {
 // test this API
 // http://localhost:3000/characters/verify-character-guess?selectedCharacter=Paul%20McCartney&x=399&y=399
 async function verifyCharacterGuess(selectedCharacter, userX, userY) {
+  console.log("verifyCharacterGuess called");
+
   const characterArray = await charactersRepository.getCharacterArray();
 
   const matchedCharacter = matchCharacterCoordinates(
@@ -39,11 +58,6 @@ async function verifyCharacterGuess(selectedCharacter, userX, userY) {
   );
   return selectedCharacter === matchedCharacter.name;
 }
-
-export default {
-  verifyLocation,
-  verifyCharacterGuess,
-};
 
 function matchCharacterCoordinates(characterArray, userX, userY) {
   const matchedCharacter = characterArray.find((character) => {
@@ -56,3 +70,9 @@ function matchCharacterCoordinates(characterArray, userX, userY) {
   });
   return matchedCharacter;
 }
+
+export default {
+  getNames,
+  verifyLocation,
+  verifyCharacterGuess,
+};
