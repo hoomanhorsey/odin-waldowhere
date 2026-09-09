@@ -1,4 +1,4 @@
-import { useState, useRef, version } from "react";
+import { useState, useRef } from "react";
 
 import "./GameBoard.css";
 
