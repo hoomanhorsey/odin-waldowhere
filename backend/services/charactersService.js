@@ -5,9 +5,9 @@ const TOLERANCE_FACTOR = 20;
 const TOLERANCE = IMAGE_SIZE / TOLERANCE_FACTOR;
 
 //test this API
-//http://localhost:3000/characters/names
-async function getNames() {
-  console.log("getnames service is called");
+//http://localhost:3000/characters/characters
+async function getCharacters() {
+  console.log("getCharacters service is called");
   const characterArray = await charactersRepository.getCharacterArray();
 
   if (characterArray) {
@@ -72,7 +72,7 @@ function matchCharacterCoordinates(characterArray, userX, userY) {
 }
 
 export default {
-  getNames,
+  getCharacters,
   verifyLocation,
   verifyCharacterGuess,
 };

@@ -1,14 +1,14 @@
 import charactersService from "../services/charactersService.js";
 
-async function getNames(req, res) {
-  console.log("getNames is being called");
+async function getCharacters(req, res) {
+  console.log("getCharacters is being called");
   try {
-    const names = await charactersService.getNames();
+    const characters = await charactersService.getCharacters();
 
-    if (names) {
+    if (characters) {
       res.status(200).json({
         success: true,
-        characterNames: names,
+        characterNames: characters,
       });
     } else {
       res.status(200).json({
@@ -81,7 +81,7 @@ async function verifyCharacterGuess(req, res) {
 }
 
 export default {
-  getNames,
+  getCharacters,
   verifyLocation,
   verifyCharacterGuess,
 };
