@@ -2,7 +2,7 @@
 
 // Dependencies & core modules
 import express from "express";
-// import cors from "cors";  ** Import later when frontend is running**
+import cors from "cors";
 const app = express();
 
 // Validation
@@ -12,7 +12,7 @@ const app = express();
 import charactersRouter from "./routes/charactersRouter.js";
 import scoreRouter from "./routes/scoreRouter.js";
 
-// app.use(cors()); // enables CORS for ALL routes
+app.use(cors()); // enables CORS for ALL routes
 
 app.use(express.json());
 
