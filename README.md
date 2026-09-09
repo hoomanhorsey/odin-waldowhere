@@ -7,7 +7,7 @@ Returns { success: true, coordinates: [x, y] } or { success: false, message: "No
 Success: 200 OK
 Error: 500 (server error)
 
-- GET /characters/verify-guess?selectedCharacter=&x=&y=
+- GET /characters/verify-character-guess?selectedCharacter=&x=&y=
 
 Returns { success: true, characterId: "selectedCharacter" } or { success: false, message: "Wrong name for this character" }
 

@@ -2,6 +2,15 @@
 
 **gameLogic**
 
+- [] [API] - getCharacterNames
+- route - GET /characters/names
+- frontend trigger - fetchCharacterNames
+- operation:
+  - calls gameDB to get character names only
+  - API returns to frontend
+    - { success: true, characterNames: [characterArray]}
+    - { success: false, message: 'server/database error}
+
 - [] [API] - verifyLocation(coordinates)
   - route - GET /characters/verify-location?x=n&y=n
   - frontend trigger: handleImageClick

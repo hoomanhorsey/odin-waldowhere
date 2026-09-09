@@ -37,7 +37,7 @@
 **Functions**
 
 - [API] handleCharacterSubmit(selectedCharacter, verifiedCharacterCoordinates)
-  - sends selectedCharacter and userClickCoordinates to backend.
+  - sends selectedCharacter and verifiedCharacterCoordinates to backend.
   - const restult = await api.verifyCharacterGuess(selectedCharacter, verifiedCharacterCoordinates)
   - returns
     - { success: true, characterId: 123 }
@@ -110,38 +110,27 @@ if gameStatus = 'playing' || 'ended' || 'completed':
 **Return**
 
 - JSX - gameImage - onClick handleImageClick(Coordinates)
-- **OutlineFoundCharacter - component**
-- **CharacterMenu - component**
+- **CharacterTargetingUI - component**
   - props - handleCharacterSubmit - function
 - **DsplayFoundCharacters - component**
 
-## OutlineFoundCharacter - component
+## CharacterTargetingUI - component
 
 **State**  
 **Props**
 
-- verifiedCharacterCoordinates -state  
-  **Effects**  
+- verifiedCharacterCoordinates -state
+- gameCharacters - state
+- gameStatus - state
+- handleImageClick()
+- handleCharacterSubmit()
+- **Effects**  
   **Functions**  
   **Return**  
   if verifiedCharacterCoordinates != false:
   - JSX
   - Outline overlay of character
-
-## CharacterMenu - component
-
-**State**  
-**Props**
-
-- verifiedCharacterCoordinates - state -
-- gameCharacters - state
-- gameStatus - state
-- handleCharacterSubmit()
-
-**Effects**  
-**Functions**  
-**Return**  
-if verifiedCharacterCoordinates != false: - JSX - dispay drop down menu of characters - onSubmit handleCharacterSubmit(selectedCharacter)
+  - if verifiedCharacterCoordinates != false: - JSX - dispay drop down menu of characters - onSubmit handleCharacterSubmit(selectedCharacter)
 
 ## DisplayFoundCharacters
 

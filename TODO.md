@@ -2,13 +2,13 @@ Notes on task order
 
 Back to coding, I think I am going to do this.
 
-- commit my backend pseudocode file
-- set up prisma and my prisma schemas
-- merge setup branch to main
-- create a new branch, backend- app
-- create a app.js main backend file.
-- create routes, controllers and repository files.
-- insert placeholder functions>
+- [x] commit my backend pseudocode file -
+- [x] set up prisma and my prisma schemas
+- [x] merge setup branch to main
+- [] create a new branch, backend- app
+- [] create a app.js main backend file.
+- [] create routes, controllers and repository files.
+- [] insert placeholder functions>
 
 Or should I work on front end at one of the stages?
 
@@ -37,55 +37,56 @@ Recommendation: Your sequence is solid. After merging to main, consider whether 
 
 Which approach fits your workflow preference?
 
-
-
 ## SETUP
 
 **POSTGRES**
+
 - [x] Set up PostgreSQL
 - [x] Create new database as dev_user
 - [x] Test connection with psql
 - [] Document connection string in .env.example
 
 **PROJECT SETUP**
+
 - [x] Run npm init -y
 - [x] Install dependencies
 
 **PRISMA**
+
 - [x] Install Prisma
-    - [] Create Prisma Schema
-        - [] Define Models 
-        - [] Run `prisma migrate dev --name init`
-    - [] Set up .env with DATABASE_URL
-    - [] Test Prisma Connection
-    - [] Create seed script 
-
-
+  - [] Create Prisma Schema
+    - [] Define Models
+    - [] Run `prisma migrate dev --name init`
+  - [] Set up .env with DATABASE_URL
+  - [] Test Prisma Connection
+  - [] Create seed script
 
 ## FRONTEND
 
 **Image selection**
+
 - [] Identify shortlist of images
 - [] Select Image
-  
+
 **Design/map out front end**
+
 - [] Research flexbox vs. grid vs combo - trade-offs for mobile layouts
 - [] Design mobile first HTML page template (Title, Body)
 - [] Include responsive breakpoints (mobile, tablet, desktop)
 - [] Include features such as timer, score, persons remaining other things.
- 
+
 **UI functionality**
 
 - [] Come back to this once I've designed the template, to add functionality relating to design.
-- 
+-
 - [x] Research vanilla JS vs. React for front end user interaction - decided to go with React
 
 - **[x] GameContainer/ component**
   - [x] **GameBoard/ component**
-  - [x] **OutlineFoundCharacter/ component**
+  - [x] **CharacterTargetingUI/ component**
   - [x] **CharacterMenu/ component**
   - [x] **DisplayFoundCharacteres/ component**
-  - [x] **Timer/ component**  
+  - [x] **Timer/ component**
   - [x] **GameResultsModal/ component**
   - [x] **Leaderboard/ component**
 
@@ -93,15 +94,13 @@ Which approach fits your workflow preference?
 
 **gameLogic**
 
-- [] [API] - verifyLocation(coordinates)  
-- [] [API] - verifyCharacterGuess(selectedCharacter, userClickCoordinates)    
+- [] [API] - verifyLocation(coordinates)
+- [] [API] - verifyCharacterGuess(selectedCharacter, userClickCoordinates)
 
 **Scoring - check selection**
 
-- [] [API] - saveScore(username, elapsedTimepsed)  
+- [] [API] - saveScore(username, elapsedTimepsed)
 
 **Timer**
 
 **Character Array**
-
-
