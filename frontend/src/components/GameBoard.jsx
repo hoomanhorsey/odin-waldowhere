@@ -41,6 +41,19 @@ function GameBoard({
       console.log(verifiedCharacterCoordinates);
 
       if (data.success) {
+        if (
+          gameCharacters.some(
+            (char) =>
+              char.x === data.coordinates[0] && char.y === data.coordinates[1],
+          )
+        ) {
+          alert("Character at this location has already been found");
+          return;
+        }
+
+        console.log(data.coordinates);
+
+        alert(gameCharacters);
         alert("Yup!   " + imageX + " | " + imageY + " | " + data.coordinates);
 
         //TODO
@@ -81,7 +94,7 @@ function GameBoard({
 
         const updatedGameCharacters = gameCharacters.map((char, i) => {
           if (char.name === selectedCharacter) {
-            return { ...char, found: true };
+            return { ...char, x: x, y: y, found: true };
           }
           return char;
         });

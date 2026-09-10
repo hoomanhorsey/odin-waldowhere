@@ -27,7 +27,7 @@ function GameContainer() {
         );
         const data = await response.json();
         if (data.success) {
-          setGameCharacters(data.characterNames);
+          setGameCharacters(data.characters);
         }
       } catch (error) {
         console.error(error);
@@ -36,10 +36,13 @@ function GameContainer() {
     fetchCharacters();
   }, []);
 
+  // check for Win condition
   useEffect(() => {
     const score = gameCharacters.filter((char) => char.found).length;
     if (gameCharacters.length > 0 && score === gameCharacters.length) {
       setGameStatus("WON");
+
+      // NEED TO INSERT CONSEQUNCES
     }
   }, [gameCharacters]);
 
