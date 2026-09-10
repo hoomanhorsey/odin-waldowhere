@@ -1,5 +1,7 @@
-function GameResultModal() {
-  return <>GameResultModal placeholder</>;
+function GameResultsModal({ elapsedTime }) {
+  // MODAL does display, but it isn't configured as a modal yet.
+
+  return <>GameResultModal hkjhkjhkjhplaceholder {elapsedTime}</>;
 }
 
-export default GameResultModal;
+export default GameResultsModal;

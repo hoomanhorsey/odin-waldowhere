@@ -5,7 +5,7 @@ import GameStatus from "./GameStatus.jsx";
 import Timer from "./Timer.jsx";
 import Score from "./Score.jsx";
 
-import GameResultModal from "./GameResultsModal.jsx";
+import GameResultsModal from "./GameResultsModal.jsx";
 import Leaderboard from "./Leaderboard.jsx";
 
 function GameContainer() {
@@ -59,7 +59,7 @@ function GameContainer() {
         setGameCharacters={setGameCharacters}
       />
 
-      <GameResultModal />
+      {gameStatus === "WON" && <GameResultsModal elapsedTime={elapsedTime} />}
       <Leaderboard />
     </div>
   );
