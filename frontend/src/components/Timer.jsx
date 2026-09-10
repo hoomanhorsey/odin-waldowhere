@@ -1,5 +1,5 @@
 function Timer() {
-  return <>Timer Placeholder</>;
+  return <>[Timer Placeholder]</>;
 }
 
 export default Timer;

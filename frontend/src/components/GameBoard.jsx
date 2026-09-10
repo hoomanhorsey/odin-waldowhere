@@ -86,6 +86,9 @@ function GameBoard({
           return char;
         });
         setGameCharacters(updatedGameCharacters); // sets the found property of the found character to true
+        setVerifiedCharacterCoordinates(false); // resets as false, which removes CharacterTargetingUI
+        setSelectedCharacter(""); // resets menu character select
+        setGameStatus("TARGETING");
       } else {
         console.error(data.message);
         alert("Wrong character");
@@ -106,6 +109,7 @@ function GameBoard({
           handleCharacterSubmit={handleCharacterSubmit}
           selectedCharacter={selectedCharacter}
           setSelectedCharacter={setSelectedCharacter}
+          gameCharacters={gameCharacters}
         />
       </div>
 

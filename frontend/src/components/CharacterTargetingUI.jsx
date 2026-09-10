@@ -3,6 +3,7 @@ function CharacterTargetingUI({
   handleCharacterSubmit,
   selectedCharacter,
   setSelectedCharacter,
+  gameCharacters,
 }) {
   if (!verifiedCharacterCoordinates) {
     return null;
@@ -10,17 +11,9 @@ function CharacterTargetingUI({
 
   const [x, y] = verifiedCharacterCoordinates;
 
-  const radius = 15; // 20px diameter circle
+  const radius = 5; // 20px diameter circle
 
   console.log(`SVG position - left: ${x - radius}, top: ${y - radius}`);
-
-  // just for testing TODO DELETE LATER
-  const charactersData = [
-    { name: "John Lennon", x: 100, y: 100 },
-    { name: "Paul McCartney", x: 400, y: 400 },
-    { name: "Ringo Starr", x: 700, y: 700 },
-    { name: "George Harrison", x: 1000, y: 1000 },
-  ];
 
   return (
     <>
@@ -61,8 +54,9 @@ function CharacterTargetingUI({
           onChange={(e) => setSelectedCharacter(e.target.value)}
         >
           <option>Choose a character</option>
-          <option>Paul McCartney</option>
-          <option>Bob</option>
+          {gameCharacters.map((char) => (
+            <option key={char.id}>{char.name}</option>
+          ))}
         </select>
         <button
           onClick={() => handleCharacterSubmit(x, y)}
