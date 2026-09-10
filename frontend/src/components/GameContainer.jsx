@@ -12,9 +12,8 @@ function GameContainer() {
 
   const [gameCharacters, setGameCharacters] = useState([]);
   const [elapsedTime, setElapsedTime] = useState(0);
-  const [userClickCoordinates, setUserClickCoordinates] = useState(false);
-
-  const [selectedCharacter, setSelectedCharacter] = useState(false);
+  // const [userClickCoordinates, setUserClickCoordinates] = useState(false);
+  // const [selectedCharacter, setSelectedCharacter] = useState(false);
   const [leaderboard, setLeaderboard] = useState(null);
 
   useEffect(() => {
@@ -37,7 +36,12 @@ function GameContainer() {
   console.log(gameCharacters);
   return (
     <div className="GameContainer">
-      <GameBoard gameStatus={gameStatus} setGameStatus={setGameStatus} />
+      <GameBoard
+        gameStatus={gameStatus}
+        setGameStatus={setGameStatus}
+        gameCharacters={gameCharacters}
+        setGameCharacters={setGameCharacters}
+      />
       <Timer />
       <GameResultModal />
       <Leaderboard />

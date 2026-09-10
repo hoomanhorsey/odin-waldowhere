@@ -7,7 +7,12 @@ import DisplayFoundCharacters from "./DisplayFoundCharacters.jsx";
 
 import gameImage from "../assets/gameImage65.jpg";
 
-function GameBoard({ gameStatus, setGameStatus }) {
+function GameBoard({
+  gameStatus,
+  setGameStatus,
+  gameCharacters,
+  setGameCharacters,
+}) {
   const [verifiedCharacterCoordinates, setVerifiedCharacterCoordinates] =
     useState(false);
   const [imageBounds, setImageBounds] = useState(null);
@@ -72,6 +77,15 @@ function GameBoard({ gameStatus, setGameStatus }) {
       const data = await response.json();
       if (data.success) {
         alert("It was the right character!" + data.characterId);
+        console.table(gameCharacters);
+
+        const updatedGameCharacters = gameCharacters.map((char, i) => {
+          if (char.name === selectedCharacter) {
+            return { ...char, found: true };
+          }
+          return char;
+        });
+        setGameCharacters(updatedGameCharacters); // sets the found property of the found character to true
       } else {
         console.error(data.message);
         alert("Wrong character");

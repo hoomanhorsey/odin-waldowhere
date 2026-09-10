@@ -1,6 +1,5 @@
 function CharacterTargetingUI({
   verifiedCharacterCoordinates,
-  imageBounds,
   handleCharacterSubmit,
   selectedCharacter,
   setSelectedCharacter,
