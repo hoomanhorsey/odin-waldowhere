@@ -3,12 +3,35 @@ import { useState } from "react";
 import "./GameResultsModal.css";
 
 function GameResultsModal({ elapsedTime }) {
-  const [playerName, setPlayername] = useState("");
+  const [playerName, setPlayerName] = useState("");
 
-  const handleSaveScore = (playerName, elapsedTime) => {
+  const handleSaveScore = async (playerName, elapsedTime) => {
     if (playerName.trim()) {
       alert("send name to backend");
-      console.log(playerName);
+
+      try {
+        const response = await fetch("http://localhost:3000/score/save-score", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            playerName: playerName,
+            elapsedTime: elapsedTime,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (data.success) // TODO insert the fetch backend call
+        {
+          alert("yeah");
+        } else {
+          console.error(data.message);
+        }
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
@@ -23,7 +46,7 @@ function GameResultsModal({ elapsedTime }) {
           name="playername"
           placeholder="Enter your name"
           value={playerName}
-          onChange={(e) => setPlayername(e.target.value)}
+          onChange={(e) => setPlayerName(e.target.value)}
         ></input>
         <button onClick={() => handleSaveScore(playerName, elapsedTime)}>
           Save your score

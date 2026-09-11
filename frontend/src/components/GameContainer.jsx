@@ -13,7 +13,7 @@ function GameContainer() {
   // IDLE, TARGETING, SELECTINGCHARACTER, WON, COMPLETED
 
   const [gameCharacters, setGameCharacters] = useState([]);
-  const [elapsedTime, setElapsedTime] = useState(999999999999999999);
+  const [elapsedTime, setElapsedTime] = useState(999999);
   // const [userClickCoordinates, setUserClickCoordinates] = useState(false);
   // const [selectedCharacter, setSelectedCharacter] = useState(false);
   const [leaderboard, setLeaderboard] = useState(null);
