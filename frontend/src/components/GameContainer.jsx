@@ -13,7 +13,7 @@ function GameContainer() {
   // IDLE, TARGETING, SELECTINGCHARACTER, WON, COMPLETED
 
   const [gameCharacters, setGameCharacters] = useState([]);
-  const [elapsedTime, setElapsedTime] = useState(0);
+  const [elapsedTime, setElapsedTime] = useState(999999999999999999);
   // const [userClickCoordinates, setUserClickCoordinates] = useState(false);
   // const [selectedCharacter, setSelectedCharacter] = useState(false);
   const [leaderboard, setLeaderboard] = useState(null);
@@ -39,7 +39,10 @@ function GameContainer() {
   // check for Win condition
   useEffect(() => {
     const score = gameCharacters.filter((char) => char.found).length;
-    if (gameCharacters.length > 0 && score === gameCharacters.length) {
+    // if (gameCharacters.length > 0 && score === gameCharacters.length)
+
+    // NOTE - TEST WIN CONDITION. WIN BY DEFAULT TO TEST MODAL
+    if (gameCharacters.length) {
       setGameStatus("WON");
 
       // NEED TO INSERT CONSEQUNCES
