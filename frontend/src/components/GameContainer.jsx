@@ -18,6 +18,23 @@ function GameContainer() {
   // const [userClickCoordinates, setUserClickCoordinates] = useState(false);
   // const [selectedCharacter, setSelectedCharacter] = useState(false);
   const [leaderboard, setLeaderboard] = useState(null);
+  const [timer, setTimer] = useState(0);
+
+  useEffect(() => {
+    if (gameStatus !== "TARGETING") return;
+
+    let startTime = Date.now();
+    let intervalId;
+
+    const tick = () => {
+      const elapsed = Math.floor((Date.now() - startTime) / 1000);
+      setTimer(elapsed);
+    };
+
+    intervalId = setInterval(tick, 1000); // Run once per second
+
+    return () => clearInterval(intervalId);
+  }, [gameStatus]);
 
   // initial retrieval of gameChars from db
   useEffect(() => {
@@ -43,10 +60,9 @@ function GameContainer() {
     if (
       gameCharacters.length > 0 &&
       score === gameCharacters.length
-    ) // // NOTE - TEST WIN CONDITION. WIN BY DEFAULT TO TEST MODAL
-    // if (gameCharacters.length)
-
-    {
+      // // NOTE - TEST WIN CONDITION. WIN BY DEFAULT TO TEST MODAL
+      // if (gameCharacters.length)
+    ) {
       setGameStatus("WON");
 
       // NEED TO INSERT CONSEQUNCES
@@ -57,7 +73,7 @@ function GameContainer() {
   return (
     <div className="GameContainer">
       <GameStatus gameStatus={gameStatus} />
-      <Timer />
+      <Timer timer={timer} />
       <Score gameCharacters={gameCharacters} />
       <GameBoard
         gameStatus={gameStatus}
@@ -77,7 +93,9 @@ function GameContainer() {
         <Leaderboard leaderboard={leaderboard} setGameStatus={setGameStatus} />
       )}
 
-      {gameStatus === "IDLE" && <GameStartModal />}
+      {gameStatus === "IDLE" && (
+        <GameStartModal setGameStatus={setGameStatus} setTimer={setTimer} />
+      )}
     </div>
   );
 }

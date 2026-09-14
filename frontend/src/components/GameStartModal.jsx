@@ -2,8 +2,10 @@ import { useState } from "react";
 
 import "./GameStartModal.css";
 
-function GameStartModal({}) {
-  const startGame = async () => {};
+function GameStartModal({ setGameStatus }) {
+  const startGame = () => {
+    setGameStatus("TARGETING");
+  };
 
   return (
     <div className="game-start-modal-overlay">
