@@ -5,11 +5,12 @@ import GameStatus from "./GameStatus.jsx";
 import Timer from "./Timer.jsx";
 import Score from "./Score.jsx";
 
+import GameStartModal from "./GameStartModal.jsx";
 import GameResultsModal from "./GameResultsModal.jsx";
 import Leaderboard from "./Leaderboard.jsx";
 
 function GameContainer() {
-  const [gameStatus, setGameStatus] = useState("TARGETING");
+  const [gameStatus, setGameStatus] = useState("IDLE");
   // IDLE, TARGETING, SELECTINGCHARACTER, WON, COMPLETED
 
   const [gameCharacters, setGameCharacters] = useState([]);
@@ -39,10 +40,13 @@ function GameContainer() {
   // check for Win condition
   useEffect(() => {
     const score = gameCharacters.filter((char) => char.found).length;
-    // if (gameCharacters.length > 0 && score === gameCharacters.length)
+    if (
+      gameCharacters.length > 0 &&
+      score === gameCharacters.length
+    ) // // NOTE - TEST WIN CONDITION. WIN BY DEFAULT TO TEST MODAL
+    // if (gameCharacters.length)
 
-    // NOTE - TEST WIN CONDITION. WIN BY DEFAULT TO TEST MODAL
-    if (gameCharacters.length) {
+    {
       setGameStatus("WON");
 
       // NEED TO INSERT CONSEQUNCES
@@ -62,8 +66,18 @@ function GameContainer() {
         setGameCharacters={setGameCharacters}
       />
 
-      {gameStatus === "WON" && <GameResultsModal elapsedTime={elapsedTime} />}
-      <Leaderboard />
+      {gameStatus === "WON" && (
+        <GameResultsModal
+          elapsedTime={elapsedTime}
+          setLeaderboard={setLeaderboard}
+          setGameStatus={setGameStatus}
+        />
+      )}
+      {gameStatus === "COMPLETED" && (
+        <Leaderboard leaderboard={leaderboard} setGameStatus={setGameStatus} />
+      )}
+
+      {gameStatus === "IDLE" && <GameStartModal />}
     </div>
   );
 }

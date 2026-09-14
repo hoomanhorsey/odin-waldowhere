@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import "./GameResultsModal.css";
 
-function GameResultsModal({ elapsedTime }) {
+function GameResultsModal({ elapsedTime, setLeaderboard, setGameStatus }) {
   const [playerName, setPlayerName] = useState("");
 
   const handleSaveScore = async (playerName, elapsedTime) => {
@@ -26,6 +26,9 @@ function GameResultsModal({ elapsedTime }) {
         if (data.success) // TODO insert the fetch backend call
         {
           alert("yeah");
+          console.table(data.leaderboard);
+          setLeaderboard(data.leaderboard);
+          setGameStatus("COMPLETED");
         } else {
           console.error(data.message);
         }

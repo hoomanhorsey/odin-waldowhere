@@ -113,9 +113,8 @@ function GameBoard({
 
   return (
     <>
-      <div className="gameImage">
+      <div className={`gameImage ${gameStatus === "IDLE" ? "blurred" : ""}`}>
         <img ref={imageRef} src={gameImage} onClick={handleImageClick} />
-
         <CharacterTargetingUI
           verifiedCharacterCoordinates={verifiedCharacterCoordinates}
           imageBounds={imageBounds}
