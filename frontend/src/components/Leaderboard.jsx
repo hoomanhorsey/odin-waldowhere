@@ -1,4 +1,5 @@
 import "./Leaderboard.css";
+import { formatTime } from "../utils/formatTime";
 
 import { useState } from "react";
 
@@ -15,7 +16,7 @@ function Leaderboard({ leaderboard, setGameStatus }) {
 
         {leaderboard.map((player, index) => (
           <p key={player.id}>
-            {index + 1} | {player.name} | {player.elapsedTime} |
+            {index + 1} | {player.name} | {formatTime(player.elapsedTime)} |
             {player.createdAt}
           </p>
         ))}

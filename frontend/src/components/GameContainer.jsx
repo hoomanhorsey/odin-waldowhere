@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import GameBoard from "./GameBoard.jsx";
 import GameStatus from "./GameStatus.jsx";
@@ -14,29 +14,42 @@ function GameContainer() {
   // IDLE, TARGETING, SELECTINGCHARACTER, WON, COMPLETED
 
   const [gameCharacters, setGameCharacters] = useState([]);
-  const [elapsedTime, setElapsedTime] = useState(999999);
+  const [elapsedTime, setElapsedTime] = useState(null);
   // const [userClickCoordinates, setUserClickCoordinates] = useState(false);
   // const [selectedCharacter, setSelectedCharacter] = useState(false);
   const [leaderboard, setLeaderboard] = useState(null);
   const [timer, setTimer] = useState(0);
 
+  // EFFECT: Reset timer when game returns to IDLE
   useEffect(() => {
-    if (gameStatus !== "TARGETING") return;
+    if (gameStatus === "IDLE") {
+      startTimeRef.current = null;
+      setTimer(0);
+    }
+  }, [gameStatus]);
 
-    let startTime = Date.now();
-    let intervalId;
+  // EFFECT: Run/stop interval timer during active gameplay
+  const startTimeRef = useRef(null);
+  useEffect(() => {
+    if (gameStatus !== "TARGETING" && gameStatus !== "SELECTINGCHARACTER")
+      return;
+
+    // Only set startTime once, when timer first starts
+    if (startTimeRef.current === null) {
+      startTimeRef.current = Date.now();
+    }
 
     const tick = () => {
-      const elapsed = Math.floor((Date.now() - startTime) / 1000);
+      const elapsed = Math.floor((Date.now() - startTimeRef.current) / 1000);
       setTimer(elapsed);
     };
 
-    intervalId = setInterval(tick, 1000); // Run once per second
+    const intervalId = setInterval(tick, 1000); // Run once per second
 
     return () => clearInterval(intervalId);
   }, [gameStatus]);
 
-  // initial retrieval of gameChars from db
+  // EFFECT: Fetch characters when game is IDLE (initial load & reset)
   useEffect(() => {
     async function fetchCharacters() {
       try {
@@ -51,10 +64,13 @@ function GameContainer() {
         console.error(error);
       }
     }
-    fetchCharacters();
-  }, []);
 
-  // check for Win condition
+    if (gameStatus === "IDLE") {
+      fetchCharacters();
+    }
+  }, [gameStatus]);
+
+  // EFFECT: Check win condition whenever characters are found
   useEffect(() => {
     const score = gameCharacters.filter((char) => char.found).length;
     if (
@@ -64,6 +80,7 @@ function GameContainer() {
       // if (gameCharacters.length)
     ) {
       setGameStatus("WON");
+      setElapsedTime(timer);
 
       // NEED TO INSERT CONSEQUNCES
     }
