@@ -8,7 +8,7 @@ async function getCharacters(req, res) {
     if (characters) {
       res.status(200).json({
         success: true,
-        characterNames: characters,
+        characters: characters,
       });
     } else {
       res.status(200).json({

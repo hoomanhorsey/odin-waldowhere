@@ -14,6 +14,8 @@ async function getCharacters() {
     return characterArray.map((char) => ({
       id: char.id,
       name: char.name,
+      x: null,
+      y: null,
       found: char.found,
     }));
   }
