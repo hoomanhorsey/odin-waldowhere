@@ -15,10 +15,10 @@ async function main() {
 
     // create characters
     const charactersData = [
-      { name: "John Lennon", x: 100, y: 100 },
-      { name: "Paul McCartney", x: 400, y: 400 },
-      { name: "Ringo Starr", x: 700, y: 700 },
-      { name: "George Harrison", x: 1000, y: 1000 },
+      { name: "Waldo", x: 1585, y: 590 },
+      { name: "Wilma", x: 720, y: 800 },
+      { name: "Odlaw", x: 270, y: 555 },
+      { name: "Wizard", x: 690, y: 545 },
     ];
 
     for (const char of charactersData) {
@@ -30,16 +30,16 @@ async function main() {
 
     // create leaderboard entries
     const leaderboardData = [
-      { name: "PAC-MAN", elapsedTime: 999999999 },
-      { name: "DONKEY KONG", elapsedTime: 999999998 },
-      { name: "GALAGA", elapsedTime: 999999997 },
-      { name: "SPACE INVADERS", elapsedTime: 999999996 },
-      { name: "ASTEROIDS", elapsedTime: 999999995 },
-      { name: "CENTIPEDE", elapsedTime: 999999994 },
-      { name: "MS. PAC-MAN", elapsedTime: 999999993 },
-      { name: "FROGGER", elapsedTime: 999999992 },
-      { name: "DEFENDER", elapsedTime: 999999991 },
-      { name: "TEMPEST", elapsedTime: 999999990 },
+      { name: "PAC-MAN", elapsedTime: 9999999 },
+      { name: "DONKEY KONG", elapsedTime: 9999999 },
+      { name: "GALAGA", elapsedTime: 999999 },
+      { name: "SPACE INVADERS", elapsedTime: 9999999 },
+      { name: "ASTEROIDS", elapsedTime: 9999999 },
+      { name: "CENTIPEDE", elapsedTime: 9999999 },
+      { name: "MS. PAC-MAN", elapsedTime: 9999999 },
+      { name: "FROGGER", elapsedTime: 9999999 },
+      { name: "DEFENDER", elapsedTime: 9999999 },
+      { name: "TEMPEST", elapsedTime: 9999999 },
     ];
 
     for (const entry of leaderboardData) {
