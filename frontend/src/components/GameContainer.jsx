@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
 import GameBoard from "./GameBoard.jsx";
-import GameStatus from "./GameStatus.jsx";
 import Timer from "./Timer.jsx";
 import Score from "./Score.jsx";
 
@@ -89,7 +88,7 @@ function GameContainer() {
   console.log(gameCharacters);
   return (
     <div className="GameContainer">
-      <GameStatus gameStatus={gameStatus} />
+      <div>GameStatus- {gameStatus}</div>
       <Timer timer={timer} />
       <Score gameCharacters={gameCharacters} />
       <GameBoard
@@ -98,7 +97,6 @@ function GameContainer() {
         gameCharacters={gameCharacters}
         setGameCharacters={setGameCharacters}
       />
-
       {gameStatus === "WON" && (
         <GameResultsModal
           elapsedTime={elapsedTime}
@@ -109,7 +107,6 @@ function GameContainer() {
       {gameStatus === "COMPLETED" && (
         <Leaderboard leaderboard={leaderboard} setGameStatus={setGameStatus} />
       )}
-
       {gameStatus === "IDLE" && (
         <GameStartModal setGameStatus={setGameStatus} setTimer={setTimer} />
       )}

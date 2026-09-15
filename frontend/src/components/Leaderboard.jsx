@@ -17,7 +17,7 @@ function Leaderboard({ leaderboard, setGameStatus }) {
         {leaderboard.map((player, index) => (
           <p key={player.id}>
             {index + 1} | {player.name} | {formatTime(player.elapsedTime)} |
-            {player.createdAt}
+            {new Date(player.createdAt).toLocaleDateString()}
           </p>
         ))}
 

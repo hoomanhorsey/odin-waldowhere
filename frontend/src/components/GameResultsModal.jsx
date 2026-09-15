@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { formatTime } from "../utils/formatTime";
 
 import "./GameResultsModal.css";
 
@@ -42,7 +43,7 @@ function GameResultsModal({ elapsedTime, setLeaderboard, setGameStatus }) {
     <div className="modal-overlay">
       <div className="modal-content">
         <h2>Game Complete!</h2>
-        <p>Time to find all the characters: {elapsedTime}s</p>
+        <p>Time to find all the characters: {formatTime(elapsedTime)}s</p>
 
         <input
           id="playername"
