@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 
 import "./GameContainer.css";
 
+import MapSelect from "./MapSelect.jsx";
 import GameBoard from "./GameBoard.jsx";
 import Timer from "./Timer.jsx";
 import Score from "./Score.jsx";
@@ -12,8 +13,8 @@ import Leaderboard from "./Leaderboard.jsx";
 import RemainingCharacters from "./RemainingCharacters.jsx";
 
 function GameContainer() {
-  const [gameStatus, setGameStatus] = useState("IDLE");
-  // IDLE, TARGETING, SELECTINGCHARACTER, WON, COMPLETED
+  const [gameStatus, setGameStatus] = useState("MAPSELECT");
+  // MAPSELECT, IDLE, TARGETING, SELECTINGCHARACTER, WON, COMPLETED
 
   const [gameCharacters, setGameCharacters] = useState([]);
   const [elapsedTime, setElapsedTime] = useState(null);
@@ -91,15 +92,23 @@ function GameContainer() {
   return (
     <div className="GameContainer">
       <div>GameStatus- {gameStatus}</div>
-      <Timer timer={timer} />
-      <Score gameCharacters={gameCharacters} />
-      <RemainingCharacters gameCharacters={gameCharacters} />
-      <GameBoard
-        gameStatus={gameStatus}
-        setGameStatus={setGameStatus}
-        gameCharacters={gameCharacters}
-        setGameCharacters={setGameCharacters}
-      />
+      {gameStatus === "MAPSELECT" && (
+        <MapSelect setGameStatus={setGameStatus} />
+      )}
+
+      {gameStatus !== "MAPSELECT" && (
+        <>
+          <GameBoard
+            gameStatus={gameStatus}
+            setGameStatus={setGameStatus}
+            gameCharacters={gameCharacters}
+            setGameCharacters={setGameCharacters}
+          />
+          <Timer timer={timer} />
+          <Score gameCharacters={gameCharacters} />
+          <RemainingCharacters gameCharacters={gameCharacters} />
+        </>
+      )}
       {gameStatus === "WON" && (
         <GameResultsModal
           elapsedTime={elapsedTime}

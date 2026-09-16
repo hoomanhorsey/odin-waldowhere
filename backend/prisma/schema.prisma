@@ -14,12 +14,14 @@ datasource db {
 
 model Characters {
   id Int @id @default(autoincrement())
-  name String @unique
+  name String 
   mapId Int
   map Map @relation(fields: [mapId], references: [id])
   x Int?
   y Int?
   found Boolean @default(false)
+
+  @@unique([name, mapId])
 }
 
 model Leaderboard {

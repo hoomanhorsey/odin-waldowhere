@@ -5,6 +5,22 @@ const TOLERANCE_FACTOR = 20;
 const TOLERANCE = IMAGE_SIZE / TOLERANCE_FACTOR;
 
 //test this API
+//http://localhost:3000/characters/getMaps
+async function getMapsArray() {
+  console.log("get Maps service is called");
+
+  const mapArray = await charactersRepository.getMapsArray();
+  if (mapArray) {
+    return mapArray.map((singleMap) => ({
+      id: singleMap.id,
+      name: singleMap.name,
+      filename: singleMap.filename,
+    }));
+  }
+  return [];
+}
+
+//test this API
 //http://localhost:3000/characters/characters
 async function getCharacters() {
   console.log("getCharacters service is called");
@@ -74,6 +90,7 @@ function matchCharacterCoordinates(characterArray, userX, userY) {
 }
 
 export default {
+  getMapsArray,
   getCharacters,
   verifyLocation,
   verifyCharacterGuess,

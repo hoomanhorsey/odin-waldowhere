@@ -1,5 +1,27 @@
 import charactersService from "../services/charactersService.js";
 
+async function getMaps(req, res) {
+  console.log("getMaps being called");
+
+  try {
+    const maps = await charactersService.getMapsArray();
+    if (maps) {
+      res.status(200).json({
+        success: true,
+        maps: maps,
+      });
+    } else {
+      res.status(200).json({
+        success: false,
+        message: "No maps found in db",
+      });
+    }
+  } catch (error) {
+    console.error("Error accessing db: ", error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+}
+
 async function getCharacters(req, res) {
   console.log("getCharacters is being called");
   try {
@@ -81,6 +103,7 @@ async function verifyCharacterGuess(req, res) {
 }
 
 export default {
+  getMaps,
   getCharacters,
   verifyLocation,
   verifyCharacterGuess,
