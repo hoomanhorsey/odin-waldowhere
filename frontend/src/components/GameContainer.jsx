@@ -88,10 +88,8 @@ function GameContainer() {
     }
   }, [gameCharacters]);
 
-  console.log(gameCharacters);
   return (
     <div className="GameContainer">
-      // DEV TODO - REMOVE GAME STATUS ON FINAL GAME
       <div>GameStatus- {gameStatus}</div>
       <Timer timer={timer} />
       <Score gameCharacters={gameCharacters} />

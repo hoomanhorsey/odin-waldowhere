@@ -15,6 +15,8 @@ datasource db {
 model Characters {
   id Int @id @default(autoincrement())
   name String @unique
+  mapId Int
+  map Map @relation(fields: [mapId], references: [id])
   x Int?
   y Int?
   found Boolean @default(false)
@@ -24,5 +26,16 @@ model Leaderboard {
   id Int @id @default(autoincrement())
   name String
   elapsedTime Int
-  createdAt DateTime @default(now())
+  mapId Int 
+  map Map @relation(fields: [mapId], references: [id])
+  createdAt DateTime @default(now()) 
+}
+
+model Map {
+  id Int @id @default(autoincrement())
+  name String
+  filename String
+
+  characters Characters[]
+  leaderboard Leaderboard[]
 }

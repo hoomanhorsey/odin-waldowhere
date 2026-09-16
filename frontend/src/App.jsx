@@ -3,10 +3,10 @@ import GameContainer from "./components/GameContainer.jsx";
 
 function App() {
   return (
-    <>
-      WALDO WHERE IS HE?
+    <div className="App">
+      <h1>WALDO WHERE IS HE?</h1>
       <GameContainer />
-    </>
+    </div>
   );
 }
 
