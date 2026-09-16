@@ -5,7 +5,6 @@ import { useState } from "react";
 
 function Leaderboard({ leaderboard, setGameStatus }) {
   function restartGame() {
-    alert("restart button pressed");
     setGameStatus("IDLE");
   }
 

@@ -8,8 +8,6 @@ function GameResultsModal({ elapsedTime, setLeaderboard, setGameStatus }) {
 
   const handleSaveScore = async (playerName, elapsedTime) => {
     if (playerName.trim()) {
-      alert("send name to backend");
-
       try {
         const response = await fetch("http://localhost:3000/score/save-score", {
           method: "POST",
@@ -24,10 +22,7 @@ function GameResultsModal({ elapsedTime, setLeaderboard, setGameStatus }) {
 
         const data = await response.json();
 
-        if (data.success) // TODO insert the fetch backend call
-        {
-          alert("yeah");
-          console.table(data.leaderboard);
+        if (data.success) {
           setLeaderboard(data.leaderboard);
           setGameStatus("COMPLETED");
         } else {

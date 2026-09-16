@@ -3,9 +3,8 @@ import { useState, useRef } from "react";
 import "./GameBoard.css";
 
 import CharacterTargetingUI from "./CharacterTargetingUI.jsx";
-import DisplayFoundCharacters from "./DisplayFoundCharacters.jsx";
 
-import gameImage from "../assets/gameImage65.jpg";
+import gameImage from "../assets/Waldobeach_2400.jpg";
 
 function GameBoard({
   gameStatus,
@@ -21,7 +20,6 @@ function GameBoard({
   const imageRef = useRef(null);
 
   async function handleImageClick(event) {
-    console.log("GAMESTATUS: " + gameStatus);
     if (gameStatus !== "TARGETING") return;
 
     // Get the image's position and size in the viewport
@@ -38,7 +36,6 @@ function GameBoard({
       );
 
       const data = await response.json();
-      console.log(verifiedCharacterCoordinates);
 
       if (data.success) {
         if (
@@ -51,10 +48,12 @@ function GameBoard({
           return;
         }
 
-        console.log(data.coordinates);
-
-        alert(gameCharacters);
-        alert("Yup!   " + imageX + " | " + imageY + " | " + data.coordinates);
+        alert(
+          "You've found somebody at co-ordinates x: " +
+            Math.floor(imageX) +
+            " and y: " +
+            Math.floor(imageY),
+        );
 
         //TODO
         // You want to set state so that verifiedCharacterCoorindates runs and CharacterMenuyruns.CharacterMenu
@@ -63,7 +62,7 @@ function GameBoard({
         setGameStatus("SELECTINGCHARACTER");
       } else {
         console.error(data.message);
-        alert("nope!   " + imageX + " | " + imageY);
+        alert("Nobody there of interest. Try again");
         setVerifiedCharacterCoordinates(false);
       }
     } catch (error) {
@@ -77,8 +76,6 @@ function GameBoard({
       return;
     }
 
-    alert("you've submitted someone good o you: " + selectedCharacter + x + y);
-
     try {
       const response = await fetch(
         `http://localhost:3000/characters/verify-character-guess?selectedCharacter=${selectedCharacter}&x=${x}&y=${y}`,
@@ -89,8 +86,7 @@ function GameBoard({
       }
       const data = await response.json();
       if (data.success) {
-        alert("It was the right character!" + data.characterId);
-        console.table(gameCharacters);
+        alert("It was the right character!");
 
         const updatedGameCharacters = gameCharacters.map((char, i) => {
           if (char.name === selectedCharacter) {
@@ -124,8 +120,6 @@ function GameBoard({
           gameCharacters={gameCharacters}
         />
       </div>
-
-      <DisplayFoundCharacters />
     </>
   );
 }

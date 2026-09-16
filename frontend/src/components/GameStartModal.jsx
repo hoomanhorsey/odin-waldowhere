@@ -10,8 +10,12 @@ function GameStartModal({ setGameStatus }) {
   return (
     <div className="game-start-modal-overlay">
       <div className="game-start-modal-content">
-        <h2>Game Start!</h2>
-
+        <h2 class="game-start-modal-heading">Game Start!</h2>
+        <p>
+          Can you help the Bureau locate and correctly identify Waldo, Wilma,
+          Odlaw and the Wizard? They are considered highly dangerous and are
+          wanted for questioning.
+        </p>
         <button onClick={() => startGame()}>Start the Search! </button>
       </div>
     </div>

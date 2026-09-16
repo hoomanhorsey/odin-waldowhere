@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
+import "./GameContainer.css";
+
 import GameBoard from "./GameBoard.jsx";
 import Timer from "./Timer.jsx";
 import Score from "./Score.jsx";
@@ -7,6 +9,7 @@ import Score from "./Score.jsx";
 import GameStartModal from "./GameStartModal.jsx";
 import GameResultsModal from "./GameResultsModal.jsx";
 import Leaderboard from "./Leaderboard.jsx";
+import RemainingCharacters from "./RemainingCharacters.jsx";
 
 function GameContainer() {
   const [gameStatus, setGameStatus] = useState("IDLE");
@@ -88,9 +91,11 @@ function GameContainer() {
   console.log(gameCharacters);
   return (
     <div className="GameContainer">
+      // DEV TODO - REMOVE GAME STATUS ON FINAL GAME
       <div>GameStatus- {gameStatus}</div>
       <Timer timer={timer} />
       <Score gameCharacters={gameCharacters} />
+      <RemainingCharacters gameCharacters={gameCharacters} />
       <GameBoard
         gameStatus={gameStatus}
         setGameStatus={setGameStatus}
