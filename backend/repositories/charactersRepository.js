@@ -3,6 +3,7 @@ import { prisma } from "../lib/prisma.js";
 async function getMapsArray() {
   try {
     const mapsArray = await prisma.map.findMany();
+    // console.table(mapsArray);
     return mapsArray;
   } catch (error) {
     console.error("Failed to fetch maps array:", error);
