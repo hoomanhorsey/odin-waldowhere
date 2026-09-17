@@ -2,20 +2,18 @@ import scoreService from "../services/scoreService.js";
 
 async function saveScore(req, res) {
   //access JSON from req.body
+  const mapId = parseInt(req.body.mapId);
   const playerName = req.body.playerName;
   const elapsedTime = parseInt(req.body.elapsedTime);
 
-  console.log(playerName, elapsedTime);
+  console.log(playerName, elapsedTime, mapId);
 
   try {
     const { topTenLeaderboard, newEntry, rank } = await scoreService.addScore(
+      mapId,
       playerName,
       elapsedTime,
     );
-
-    // console.table(topTenLeaderboard);
-    // console.log(newEntry);
-    // console.log(rank);
 
     if (topTenLeaderboard) {
       res.status(200).json({

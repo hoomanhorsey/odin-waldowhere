@@ -76,10 +76,16 @@ function GameContainer() {
   // EFFECT: Check win condition whenever characters are found
   useEffect(() => {
     const score = gameCharacters.filter((char) => char.found).length;
-    if (gameCharacters.length > 0 && score === gameCharacters.length) {
+
+    //TEST WIN CONDITION
+    if (gameCharacters.length) {
       setGameStatus("WON");
       setElapsedTime(timer);
     }
+    //     if (gameCharacters.length > 0 && score === gameCharacters.length) {
+    //   setGameStatus("WON");
+    //   setElapsedTime(timer);
+    // }
   }, [gameCharacters]);
 
   return (
@@ -108,10 +114,15 @@ function GameContainer() {
           elapsedTime={elapsedTime}
           setLeaderboard={setLeaderboard}
           setGameStatus={setGameStatus}
+          mapId={mapObject.id}
         />
       )}
       {gameStatus === "COMPLETED" && (
-        <Leaderboard leaderboard={leaderboard} setGameStatus={setGameStatus} />
+        <Leaderboard
+          leaderboard={leaderboard}
+          setGameStatus={setGameStatus}
+          mapName={mapObject.name}
+        />
       )}
       {gameStatus === "IDLE" && (
         <GameStartModal

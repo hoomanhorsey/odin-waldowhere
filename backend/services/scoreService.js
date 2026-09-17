@@ -1,11 +1,11 @@
 import scoreRepository from "../repositories/scoreRepository.js";
 
-async function addScore(name, elapsedTime) {
+async function addScore(mapId, name, elapsedTime) {
   console.log("from service");
   console.log(name, elapsedTime);
 
   const { updatedLeaderboard, newEntry } =
-    await scoreRepository.addLeaderboardEntry(name, elapsedTime);
+    await scoreRepository.addLeaderboardEntry(mapId, name, elapsedTime);
 
   // Find the rank of the newly created entry
   const rank =

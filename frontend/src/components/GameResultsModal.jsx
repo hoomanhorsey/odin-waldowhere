@@ -3,7 +3,12 @@ import { formatTime } from "../utils/formatTime";
 
 import "./GameResultsModal.css";
 
-function GameResultsModal({ elapsedTime, setLeaderboard, setGameStatus }) {
+function GameResultsModal({
+  elapsedTime,
+  setLeaderboard,
+  setGameStatus,
+  mapId,
+}) {
   const [playerName, setPlayerName] = useState("");
 
   const handleSaveScore = async (playerName, elapsedTime) => {
@@ -15,6 +20,7 @@ function GameResultsModal({ elapsedTime, setLeaderboard, setGameStatus }) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            mapId: mapId,
             playerName: playerName,
             elapsedTime: elapsedTime,
           }),

@@ -3,7 +3,7 @@ import { formatTime } from "../utils/formatTime";
 
 import { useState } from "react";
 
-function Leaderboard({ leaderboard, setGameStatus }) {
+function Leaderboard({ leaderboard, setGameStatus, mapName }) {
   function restartGame() {
     setGameStatus("IDLE");
   }
@@ -12,6 +12,7 @@ function Leaderboard({ leaderboard, setGameStatus }) {
     <div className="modal-overlay">
       <div className="modal-content">
         <h2>Leaderboard</h2>
+        {mapName}
 
         {leaderboard.map((player, index) => (
           <p key={player.id}>
