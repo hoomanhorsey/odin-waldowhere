@@ -24,9 +24,9 @@ async function getMapsArray() {
 
 //test this API
 //http://localhost:3000/characters/characters
-async function getCharacters() {
+async function getCharacters(mapId) {
   console.log("getCharacters service is called");
-  const characterArray = await charactersRepository.getCharacterArray();
+  const characterArray = await charactersRepository.getCharacterArray(mapId);
 
   if (characterArray) {
     return characterArray.map((char) => ({

@@ -13,15 +13,27 @@ async function getMapsArray() {
     throw error;
   }
 }
-async function getCharacterArray() {
+async function getCharacterArray(mapId) {
   try {
-    const characterArray = await prisma.characters.findMany();
+    const characterArray = await prisma.characters.findMany({
+      where: { mapId: mapId },
+    });
     return characterArray;
   } catch (error) {
     console.error("Failed to fetch character array:", error);
     throw error;
   }
 }
+
+// async function getCharacterArray() {
+//   try {
+//     const characterArray = await prisma.characters.findMany();
+//     return characterArray;
+//   } catch (error) {
+//     console.error("Failed to fetch character array:", error);
+//     throw error;
+//   }
+// }
 
 export default {
   getMapsArray,

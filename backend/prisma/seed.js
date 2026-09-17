@@ -9,12 +9,12 @@ const mapsData = [
     name: "Beach",
     filename: "Waldobeach_2400.jpg",
     message:
-      "This is a generic message that will be udpated closer to finalisation",
+      "BeachThis is a generic message that will be udpated closer to finalisation",
     characters: [
-      { name: "Waldo", x: 450, y: 320 },
-      { name: "Wilma", x: 1200, y: 680 },
-      { name: "Wizard Whitebeard", x: 800, y: 450 },
-      { name: "Odlaw", x: 1800, y: 900 },
+      { name: "Waldo", x: 1585, y: 590 },
+      { name: "Wilma", x: 720, y: 800 },
+      { name: "Wizard Whitebeard", x: 690, y: 545 },
+      { name: "Odlaw", x: 270, y: 555 },
     ],
     leaderboard: [
       { name: "Pac-Man", elapsedTime: 36000000 },
@@ -30,10 +30,10 @@ const mapsData = [
     ],
   },
   {
-    name: "Library",
-    filename: "Waldolibrary_2400.jpg",
+    name: "Castle",
+    filename: "Waldocastle_2400.jpg",
     message:
-      "This is a generic message that will be udpated closer to finalisation",
+      "Castle This is a generic message that will be udpated closer to finalisation",
     characters: [
       { name: "Waldo", x: 600, y: 250 },
       { name: "Wilma", x: 1400, y: 720 },
@@ -54,10 +54,10 @@ const mapsData = [
     ],
   },
   {
-    name: "Mountain",
-    filename: "Waldomountain_2400.jpg",
+    name: "Crowd",
+    filename: "Waldocrowd_2400.jpg",
     message:
-      "This is a generic message that will be udpated closer to finalisation",
+      "Crowd This is a generic message that will be udpated closer to finalisation",
 
     characters: [
       { name: "Waldo", x: 700, y: 400 },
@@ -79,10 +79,10 @@ const mapsData = [
     ],
   },
   {
-    name: "City",
-    filename: "Waldocity_2400.jpg",
+    name: "Feast",
+    filename: "Waldofeast_2400.jpg",
     message:
-      "This is a generic message that will be udpated closer to finalisation",
+      "Feast This is a generic message that will be udpated closer to finalisation",
 
     characters: [
       { name: "Waldo", x: 520, y: 480 },
@@ -104,14 +104,14 @@ const mapsData = [
     ],
   },
   {
-    name: "Forest",
-    filename: "Waldoforest_2400.jpg",
+    name: "Snow",
+    filename: "Waldosnow_2400.jpg",
     message:
-      "This is a generic message that will be udpated closer to finalisation",
+      "Snow This is a generic message that will be udpated closer to finalisation",
 
     characters: [
       { name: "Waldo", x: 650, y: 550 },
-      { name: "Wilma", x: 1250, y: 400 },
+      { name: "Wilmapoo", x: 1250, y: 400 },
       { name: "Wizard Whitebeard", x: 1700, y: 650 },
       { name: "Odlaw", x: 2050, y: 750 },
     ],
@@ -129,10 +129,10 @@ const mapsData = [
     ],
   },
   {
-    name: "Museum",
-    filename: "Waldomuseum_2400.jpg",
+    name: "Town",
+    filename: "Waldotown_2400.jpg",
     message:
-      "This is a generic message that will be udpated closer to finalisation",
+      "Town This is a generic message that will be udpated closer to finalisation",
 
     characters: [
       { name: "Waldo", x: 580, y: 320 },
@@ -150,57 +150,7 @@ const mapsData = [
       { name: "Raiden", elapsedTime: 43200000 },
       { name: "Goro", elapsedTime: 44400000 },
       { name: "Shao Kahn", elapsedTime: 45600000 },
-      { name: "Noob Saibot", elapsedTime: 46800000 },
-    ],
-  },
-  {
-    name: "Airport",
-    filename: "Waldoairport_2400.jpg",
-    message:
-      "This is a generic message that will be udpated closer to finalisation",
-
-    characters: [
-      { name: "Waldo", x: 720, y: 380 },
-      { name: "Wilma", x: 1200, y: 550 },
-      { name: "Wizard Whitebeard", x: 1600, y: 300 },
-      { name: "Odlaw", x: 2150, y: 800 },
-    ],
-    leaderboard: [
-      { name: "Ermac", elapsedTime: 36000000 },
-      { name: "Smoke", elapsedTime: 37200000 },
-      { name: "Reptile", elapsedTime: 38400000 },
-      { name: "Baraka", elapsedTime: 39600000 },
-      { name: "Jade", elapsedTime: 40800000 },
-      { name: "Kitana", elapsedTime: 42000000 },
-      { name: "Sindel", elapsedTime: 43200000 },
-      { name: "Mileena", elapsedTime: 44400000 },
-      { name: "Sheeva", elapsedTime: 45600000 },
-      { name: "Nightwolf", elapsedTime: 46800000 },
-    ],
-  },
-  {
-    name: "Carnival",
-    filename: "Waldocarnival_2400.jpg",
-    message:
-      "This is a generic message that will be udpated closer to finalisation",
-
-    characters: [
-      { name: "Waldo", x: 480, y: 320 },
-      { name: "Wilma", x: 1300, y: 700 },
-      { name: "Wizard Whitebeard", x: 1750, y: 400 },
-      { name: "Odlaw", x: 1850, y: 950 },
-    ],
-    leaderboard: [
-      { name: "Stryker", elapsedTime: 36000000 },
-      { name: "Sonya", elapsedTime: 37200000 },
-      { name: "Jax", elapsedTime: 38400000 },
-      { name: "Kung Lao", elapsedTime: 39600000 },
-      { name: "Kung Fu Master", elapsedTime: 40800000 },
-      { name: "Dig Dug", elapsedTime: 42000000 },
-      { name: "Galaga", elapsedTime: 43200000 },
-      { name: "Centipede", elapsedTime: 44400000 },
-      { name: "Ms. Pac-Man", elapsedTime: 45600000 },
-      { name: "Space Invaders", elapsedTime: 46800000 },
+      { name: "Noob Saibost", elapsedTime: 46800000 },
     ],
   },
 ];

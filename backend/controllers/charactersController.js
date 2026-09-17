@@ -25,7 +25,9 @@ async function getMaps(req, res) {
 async function getCharacters(req, res) {
   console.log("getCharacters is being called");
   try {
-    const characters = await charactersService.getCharacters();
+    const mapId = parseInt(req.query.mapId);
+    console.log(mapId);
+    const characters = await charactersService.getCharacters(mapId);
 
     if (characters) {
       res.status(200).json({

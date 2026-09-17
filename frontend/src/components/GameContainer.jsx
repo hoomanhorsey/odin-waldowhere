@@ -57,8 +57,9 @@ function GameContainer() {
   useEffect(() => {
     async function fetchCharacters() {
       try {
+        console.log("mapObject.mapId:", mapObject.mapId);
         const response = await fetch(
-          "http://localhost:3000/characters/characters",
+          `http://localhost:3000/characters/characters?mapId=${mapObject.id}`,
         );
         const data = await response.json();
         if (data.success) {
@@ -72,7 +73,7 @@ function GameContainer() {
     if (gameStatus === "IDLE") {
       fetchCharacters();
     }
-  }, [gameStatus]);
+  }, [gameStatus, mapObject]);
 
   // EFFECT: Check win condition whenever characters are found
   useEffect(() => {
@@ -93,11 +94,10 @@ function GameContainer() {
   return (
     <div className="GameContainer">
       <div>GameStatus tempDisplay- {gameStatus}</div>
-      <div>Map tempDisplay </div>
+      <div>Map tempDisplay {mapObject?.name || "No map selected"}</div>{" "}
       {gameStatus === "MAPSELECT" && (
         <MapSelect setGameStatus={setGameStatus} setMapObject={setMapObject} />
       )}
-
       {gameStatus !== "MAPSELECT" && (
         <>
           <GameBoard

@@ -118,6 +118,7 @@ function GameBoard({
           src={`assets/${mapObject.filename}`}
           onClick={handleImageClick}
         />
+        TODO GET RIDE OF HTIS INSIDE GAMEBOARDboo - {mapObject.name}
         <CharacterTargetingUI
           verifiedCharacterCoordinates={verifiedCharacterCoordinates}
           imageBounds={imageBounds}

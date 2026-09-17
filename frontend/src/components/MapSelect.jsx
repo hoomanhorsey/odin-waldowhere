@@ -15,10 +15,9 @@ function MapSelect({ setGameStatus, setMapObject }) {
     getMaps();
   }, []);
 
-  async function displayStartModal(singleMap) {
+  function handleMapSelect(singleMap) {
     setGameStatus("IDLE");
     setMapObject(singleMap);
-    console.log(singleMap);
   }
 
   return (
@@ -27,7 +26,7 @@ function MapSelect({ setGameStatus, setMapObject }) {
 
       {mapArrayDisplay.map((singleMap) => {
         return (
-          <p key={singleMap.id} onClick={() => displayStartModal(singleMap)}>
+          <p key={singleMap.id} onClick={() => handleMapSelect(singleMap)}>
             {singleMap.name}
           </p>
         );
