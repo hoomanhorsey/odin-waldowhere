@@ -11,10 +11,10 @@ const mapsData = [
     message:
       "BeachThis is a generic message that will be udpated closer to finalisation",
     characters: [
-      { name: "Waldo", x: 1585, y: 590 },
-      { name: "Wilma", x: 720, y: 800 },
-      { name: "Wizard Whitebeard", x: 690, y: 545 },
-      { name: "Odlaw", x: 270, y: 555 },
+      { name: "Waldo", x: 1485, y: 540 },
+      { name: "Wilma", x: 675, y: 750 },
+      { name: "Wizard Whitebeard", x: 650, y: 505 },
+      { name: "Odlaw", x: 260, y: 505 },
     ],
     leaderboard: [
       { name: "Pac-Man", elapsedTime: 36000000 },

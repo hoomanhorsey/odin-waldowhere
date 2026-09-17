@@ -19,8 +19,6 @@ function GameContainer() {
   const [mapObject, setMapObject] = useState(null);
   const [gameCharacters, setGameCharacters] = useState([]);
   const [elapsedTime, setElapsedTime] = useState(null);
-  // const [userClickCoordinates, setUserClickCoordinates] = useState(false);
-  // const [selectedCharacter, setSelectedCharacter] = useState(false);
   const [leaderboard, setLeaderboard] = useState(null);
   const [timer, setTimer] = useState(0);
 
@@ -78,16 +76,9 @@ function GameContainer() {
   // EFFECT: Check win condition whenever characters are found
   useEffect(() => {
     const score = gameCharacters.filter((char) => char.found).length;
-    if (
-      gameCharacters.length > 0 &&
-      score === gameCharacters.length
-      // // NOTE - TEST WIN CONDITION. WIN BY DEFAULT TO TEST MODAL
-      // if (gameCharacters.length)
-    ) {
+    if (gameCharacters.length > 0 && score === gameCharacters.length) {
       setGameStatus("WON");
       setElapsedTime(timer);
-
-      // NEED TO INSERT CONSEQUNCES
     }
   }, [gameCharacters]);
 

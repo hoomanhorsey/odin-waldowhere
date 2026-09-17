@@ -27,7 +27,7 @@ async function getMapsArray() {
 async function getCharacters(mapId) {
   console.log("getCharacters service is called");
   const characterArray = await charactersRepository.getCharacterArray(mapId);
-
+  // x and y are null to conceal coords from user
   if (characterArray) {
     return characterArray.map((char) => ({
       id: char.id,
@@ -42,9 +42,10 @@ async function getCharacters(mapId) {
 
 //test this API
 //http://localhost:3000/characters/verify-location?x=399&y=399
-async function verifyLocation(userX, userY) {
+async function verifyLocation(userX, userY, mapId) {
   console.log("verifyLocation called");
-  const characterArray = await charactersRepository.getCharacterArray();
+  const characterArray = await charactersRepository.getCharacterArray(mapId);
+  console.table(characterArray);
 
   const matchedCharacter = matchCharacterCoordinates(
     characterArray,
@@ -66,10 +67,12 @@ async function verifyLocation(userX, userY) {
 
 // test this API
 // http://localhost:3000/characters/verify-character-guess?selectedCharacter=Paul%20McCartney&x=399&y=399
-async function verifyCharacterGuess(selectedCharacter, userX, userY) {
+async function verifyCharacterGuess(selectedCharacter, userX, userY, mapId) {
   console.log("verifyCharacterGuess called");
 
-  const characterArray = await charactersRepository.getCharacterArray();
+  const characterArray = await charactersRepository.getCharacterArray(mapId);
+
+  console.table(characterArray);
 
   const matchedCharacter = matchCharacterCoordinates(
     characterArray,
@@ -81,6 +84,7 @@ async function verifyCharacterGuess(selectedCharacter, userX, userY) {
 
 function matchCharacterCoordinates(characterArray, userX, userY) {
   const matchedCharacter = characterArray.find((character) => {
+    console.log(userX, userY, character.x, character.y);
     return (
       userX <= character.x + TOLERANCE &&
       userX >= character.x - TOLERANCE &&

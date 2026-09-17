@@ -1,11 +1,6 @@
 import { useState, useRef } from "react";
-
 import "./GameBoard.css";
-
 import CharacterTargetingUI from "./CharacterTargetingUI.jsx";
-
-//###TODO, change this hardcoding to access mapObject.filename to get file
-// import gameImage from "../assets/Waldobeach_2400.jpg";
 
 function GameBoard({
   gameStatus,
@@ -17,7 +12,7 @@ function GameBoard({
   console.log(mapObject.filename);
   const [verifiedCharacterCoordinates, setVerifiedCharacterCoordinates] =
     useState(false);
-  const [imageBounds, setImageBounds] = useState(null);
+  // const [imageBounds, setImageBounds] = useState(null);
   const [selectedCharacter, setSelectedCharacter] = useState("");
 
   const imageRef = useRef(null);
@@ -27,15 +22,20 @@ function GameBoard({
 
     // Get the image's position and size in the viewport
     const imageBounds = imageRef.current.getBoundingClientRect();
-    setImageBounds(imageBounds);
+    // setImageBounds(imageBounds);
 
     // Convert viewport coordinates to image-relative coordinates
     const imageX = event.clientX - imageBounds.left;
     const imageY = event.clientY - imageBounds.top;
 
+    console.log("imageX:", imageX, "imageY:", imageY);
+
+    alert(
+      `testing handle image click - mapId: ${mapObject.id}, imageX: ${imageX}, imageY: ${imageY}`,
+    );
     try {
       const response = await fetch(
-        `http://localhost:3000/characters/verify-location?x=${imageX}&y=${imageY}`,
+        `http://localhost:3000/characters/verify-location?mapId=${mapObject.id}&x=${imageX}&y=${imageY}`,
       );
 
       const data = await response.json();
@@ -65,7 +65,12 @@ function GameBoard({
         setGameStatus("SELECTINGCHARACTER");
       } else {
         console.error(data.message);
-        alert("Nobody there of interest. Try again");
+        alert(
+          "Nobody there of interest. Try again" +
+            Math.floor(imageX) +
+            " and y: " +
+            Math.floor(imageY),
+        );
         setVerifiedCharacterCoordinates(false);
       }
     } catch (error) {
@@ -81,7 +86,7 @@ function GameBoard({
 
     try {
       const response = await fetch(
-        `http://localhost:3000/characters/verify-character-guess?selectedCharacter=${selectedCharacter}&x=${x}&y=${y}`,
+        `http://localhost:3000/characters/verify-character-guess?mapId=${mapObject.id}&selectedCharacter=${selectedCharacter}&x=${x}&y=${y}`,
       );
 
       if (!response.ok) {
@@ -121,7 +126,7 @@ function GameBoard({
         TODO GET RIDE OF HTIS INSIDE GAMEBOARDboo - {mapObject.name}
         <CharacterTargetingUI
           verifiedCharacterCoordinates={verifiedCharacterCoordinates}
-          imageBounds={imageBounds}
+          imageBounds={imageRef.current?.getBoundingClientRect()}
           handleCharacterSubmit={handleCharacterSubmit}
           selectedCharacter={selectedCharacter}
           setSelectedCharacter={setSelectedCharacter}

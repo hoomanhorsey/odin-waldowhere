@@ -47,14 +47,22 @@ async function getCharacters(req, res) {
 }
 
 async function verifyLocation(req, res) {
-  console.log("verifyfunction is being called");
+  console.log(
+    "verifyfunction is being called" +
+      req.query.x +
+      req.query.y +
+      req.query.mapId,
+  );
+
   const userX = parseInt(req.query.x);
   const userY = parseInt(req.query.y);
+  const mapId = parseInt(req.query.mapId);
 
   try {
     const matchedCharacterCoordinates = await charactersService.verifyLocation(
       userX,
       userY,
+      mapId,
     );
 
     if (matchedCharacterCoordinates) {
@@ -78,12 +86,14 @@ async function verifyCharacterGuess(req, res) {
   const selectedCharacter = req.query.selectedCharacter;
   const userX = parseInt(req.query.x);
   const userY = parseInt(req.query.y);
+  const mapId = parseInt(req.query.mapId);
 
   try {
     const guessResult = await charactersService.verifyCharacterGuess(
       selectedCharacter,
       userX,
       userY,
+      mapId,
     );
 
     console.log(guessResult);
