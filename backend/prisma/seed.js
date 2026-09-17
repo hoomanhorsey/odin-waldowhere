@@ -8,6 +8,8 @@ const mapsData = [
   {
     name: "Beach",
     filename: "Waldobeach_2400.jpg",
+    message:
+      "This is a generic message that will be udpated closer to finalisation",
     characters: [
       { name: "Waldo", x: 450, y: 320 },
       { name: "Wilma", x: 1200, y: 680 },
@@ -30,6 +32,8 @@ const mapsData = [
   {
     name: "Library",
     filename: "Waldolibrary_2400.jpg",
+    message:
+      "This is a generic message that will be udpated closer to finalisation",
     characters: [
       { name: "Waldo", x: 600, y: 250 },
       { name: "Wilma", x: 1400, y: 720 },
@@ -52,6 +56,9 @@ const mapsData = [
   {
     name: "Mountain",
     filename: "Waldomountain_2400.jpg",
+    message:
+      "This is a generic message that will be udpated closer to finalisation",
+
     characters: [
       { name: "Waldo", x: 700, y: 400 },
       { name: "Wilma", x: 1100, y: 650 },
@@ -74,6 +81,9 @@ const mapsData = [
   {
     name: "City",
     filename: "Waldocity_2400.jpg",
+    message:
+      "This is a generic message that will be udpated closer to finalisation",
+
     characters: [
       { name: "Waldo", x: 520, y: 480 },
       { name: "Wilma", x: 1350, y: 350 },
@@ -96,6 +106,9 @@ const mapsData = [
   {
     name: "Forest",
     filename: "Waldoforest_2400.jpg",
+    message:
+      "This is a generic message that will be udpated closer to finalisation",
+
     characters: [
       { name: "Waldo", x: 650, y: 550 },
       { name: "Wilma", x: 1250, y: 400 },
@@ -118,6 +131,9 @@ const mapsData = [
   {
     name: "Museum",
     filename: "Waldomuseum_2400.jpg",
+    message:
+      "This is a generic message that will be udpated closer to finalisation",
+
     characters: [
       { name: "Waldo", x: 580, y: 320 },
       { name: "Wilma", x: 1450, y: 620 },
@@ -140,6 +156,9 @@ const mapsData = [
   {
     name: "Airport",
     filename: "Waldoairport_2400.jpg",
+    message:
+      "This is a generic message that will be udpated closer to finalisation",
+
     characters: [
       { name: "Waldo", x: 720, y: 380 },
       { name: "Wilma", x: 1200, y: 550 },
@@ -162,6 +181,9 @@ const mapsData = [
   {
     name: "Carnival",
     filename: "Waldocarnival_2400.jpg",
+    message:
+      "This is a generic message that will be udpated closer to finalisation",
+
     characters: [
       { name: "Waldo", x: 480, y: 320 },
       { name: "Wilma", x: 1300, y: 700 },
@@ -196,9 +218,10 @@ async function main() {
     for (const mapData of mapsData) {
       // Insert map
       const mapResult = await client.query(
-        'INSERT INTO "Map" (name, filename) VALUES ($1, $2) RETURNING id',
-        [mapData.name, mapData.filename],
+        'INSERT INTO "Map" (name, filename, message) VALUES ($1, $2, $3) RETURNING id',
+        [mapData.name, mapData.filename, mapData.message],
       );
+
       const mapId = mapResult.rows[0].id;
       console.log(`Created map: ${mapData.name} (ID: ${mapId})`);
 

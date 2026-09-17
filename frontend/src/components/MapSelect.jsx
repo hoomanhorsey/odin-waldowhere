@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import "./MapSelect.css";
 
-function MapSelect({}) {
+function MapSelect({ setGameStatus, setMapObject }) {
   const [mapArrayDisplay, setMapArrayDisplay] = useState([]);
 
   useEffect(() => {
@@ -15,7 +15,11 @@ function MapSelect({}) {
     getMaps();
   }, []);
 
-  console.table(mapArrayDisplay);
+  async function displayStartModal(singleMap) {
+    setGameStatus("IDLE");
+    setMapObject(singleMap);
+    console.log(singleMap);
+  }
 
   return (
     <>
@@ -23,12 +27,7 @@ function MapSelect({}) {
 
       {mapArrayDisplay.map((singleMap) => {
         return (
-          <p
-            key={singleMap.id}
-            onClick={() => {
-              console.log(singleMap.id);
-            }}
-          >
+          <p key={singleMap.id} onClick={() => displayStartModal(singleMap)}>
             {singleMap.name}
           </p>
         );

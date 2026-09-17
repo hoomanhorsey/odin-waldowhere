@@ -4,14 +4,17 @@ import "./GameBoard.css";
 
 import CharacterTargetingUI from "./CharacterTargetingUI.jsx";
 
-import gameImage from "../assets/Waldobeach_2400.jpg";
+//###TODO, change this hardcoding to access mapObject.filename to get file
+// import gameImage from "../assets/Waldobeach_2400.jpg";
 
 function GameBoard({
   gameStatus,
   setGameStatus,
   gameCharacters,
   setGameCharacters,
+  mapObject,
 }) {
+  console.log(mapObject.filename);
   const [verifiedCharacterCoordinates, setVerifiedCharacterCoordinates] =
     useState(false);
   const [imageBounds, setImageBounds] = useState(null);
@@ -110,7 +113,11 @@ function GameBoard({
   return (
     <>
       <div className={`gameImage ${gameStatus === "IDLE" ? "blurred" : ""}`}>
-        <img ref={imageRef} src={gameImage} onClick={handleImageClick} />
+        <img
+          ref={imageRef}
+          src={`assets/${mapObject.filename}`}
+          onClick={handleImageClick}
+        />
         <CharacterTargetingUI
           verifiedCharacterCoordinates={verifiedCharacterCoordinates}
           imageBounds={imageBounds}

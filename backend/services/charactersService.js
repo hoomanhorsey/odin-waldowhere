@@ -15,6 +15,8 @@ async function getMapsArray() {
       id: singleMap.id,
       name: singleMap.name,
       filename: singleMap.filename,
+      message: singleMap.message,
+      characters: singleMap.characters,
     }));
   }
   return [];

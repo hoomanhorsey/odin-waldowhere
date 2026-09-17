@@ -16,6 +16,7 @@ function GameContainer() {
   const [gameStatus, setGameStatus] = useState("MAPSELECT");
   // MAPSELECT, IDLE, TARGETING, SELECTINGCHARACTER, WON, COMPLETED
 
+  const [mapObject, setMapObject] = useState(null);
   const [gameCharacters, setGameCharacters] = useState([]);
   const [elapsedTime, setElapsedTime] = useState(null);
   // const [userClickCoordinates, setUserClickCoordinates] = useState(false);
@@ -91,9 +92,10 @@ function GameContainer() {
 
   return (
     <div className="GameContainer">
-      <div>GameStatus- {gameStatus}</div>
+      <div>GameStatus tempDisplay- {gameStatus}</div>
+      <div>Map tempDisplay </div>
       {gameStatus === "MAPSELECT" && (
-        <MapSelect setGameStatus={setGameStatus} />
+        <MapSelect setGameStatus={setGameStatus} setMapObject={setMapObject} />
       )}
 
       {gameStatus !== "MAPSELECT" && (
@@ -103,6 +105,7 @@ function GameContainer() {
             setGameStatus={setGameStatus}
             gameCharacters={gameCharacters}
             setGameCharacters={setGameCharacters}
+            mapObject={mapObject}
           />
           <Timer timer={timer} />
           <Score gameCharacters={gameCharacters} />
@@ -120,7 +123,12 @@ function GameContainer() {
         <Leaderboard leaderboard={leaderboard} setGameStatus={setGameStatus} />
       )}
       {gameStatus === "IDLE" && (
-        <GameStartModal setGameStatus={setGameStatus} setTimer={setTimer} />
+        <GameStartModal
+          setGameStatus={setGameStatus}
+          setTimer={setTimer}
+          mapObjectMessage={mapObject.message}
+          mapObjectCharacters={mapObject.characters}
+        />
       )}
     </div>
   );
