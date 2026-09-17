@@ -71,7 +71,7 @@ function GameContainer() {
     if (gameStatus === "IDLE") {
       fetchCharacters();
     }
-  }, [gameStatus, mapObject]);
+  }, [gameStatus]);
 
   // EFFECT: Check win condition whenever characters are found
   useEffect(() => {
