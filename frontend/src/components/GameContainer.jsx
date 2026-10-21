@@ -93,6 +93,8 @@ function GameContainer() {
     <div>
       {gameStatus === "MAPSELECT" && (
         <>
+          {" "}
+          <h1>WALDO WHERE IS HE?</h1>
           <p>
             Sources from partner foreign intelligence agencies have indicated
             that notorious international terrorist Waldo and his team of terror
@@ -130,9 +132,15 @@ function GameContainer() {
             setGameCharacters={setGameCharacters}
             mapObject={mapObject}
           />
-          <Timer timer={timer} />
-          <Score gameCharacters={gameCharacters} />
-          <RemainingCharacters gameCharacters={gameCharacters} />
+          <div className="game-hud">
+            <div className="game-hud-row">
+              {" "}
+              <Timer timer={timer} />
+              <Score gameCharacters={gameCharacters} />
+            </div>
+
+            <RemainingCharacters gameCharacters={gameCharacters} />
+          </div>
         </>
       )}
       {gameStatus === "WON" && (
