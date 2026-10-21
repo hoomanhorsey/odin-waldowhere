@@ -5,7 +5,7 @@ import { useState } from "react";
 
 function Leaderboard({ leaderboard, setGameStatus, mapName }) {
   function restartGame() {
-    setGameStatus("IDLE");
+    setGameStatus("MAPSELECT");
   }
 
   return (

@@ -9,7 +9,7 @@ const mapsData = [
     name: "Beach",
     filename: "Waldobeach_2400.jpg",
     message:
-      "BeachThis is a generic message that will be udpated closer to finalisation",
+      "It's a beautiful sunny day and Waldo and his gang have hit the beach. Catch them before they ruin things for everyone!",
     characters: [
       { name: "Waldo", x: 1485, y: 540 },
       { name: "Wilma", x: 675, y: 750 },
@@ -29,41 +29,17 @@ const mapsData = [
       { name: "Sonic", elapsedTime: 46800000 },
     ],
   },
+
   {
-    name: "Castle",
-    filename: "Waldocastle_2400.jpg",
+    name: "Department Store",
+    filename: "Waldostore_2400.jpg",
     message:
-      "Castle This is a generic message that will be udpated closer to finalisation",
-    characters: [
-      { name: "Waldo", x: 600, y: 250 },
-      { name: "Wilma", x: 1400, y: 720 },
-      { name: "Wizard Whitebeard", x: 950, y: 380 },
-      { name: "Odlaw", x: 2000, y: 950 },
-    ],
-    leaderboard: [
-      { name: "Tails", elapsedTime: 36000000 },
-      { name: "Knuckles", elapsedTime: 37200000 },
-      { name: "Bowser", elapsedTime: 38400000 },
-      { name: "Peach", elapsedTime: 39600000 },
-      { name: "Yoshi", elapsedTime: 40800000 },
-      { name: "Pikachu", elapsedTime: 42000000 },
-      { name: "Charizard", elapsedTime: 43200000 },
-      { name: "Blastoise", elapsedTime: 44400000 },
-      { name: "Venusaur", elapsedTime: 45600000 },
-      { name: "Dragonite", elapsedTime: 46800000 },
-    ],
-  },
-  {
-    name: "Crowd",
-    filename: "Waldocrowd_2400.jpg",
-    message:
-      "Crowd This is a generic message that will be udpated closer to finalisation",
+      "Waldo and his gang have gone shopping. Quickly find them before they give themselves five finger discounts!",
 
     characters: [
-      { name: "Waldo", x: 700, y: 400 },
-      { name: "Wilma", x: 1100, y: 650 },
-      { name: "Wizard Whitebeard", x: 1400, y: 200 },
-      { name: "Odlaw", x: 1950, y: 850 },
+      { name: "Waldo", x: 1180, y: 320 },
+      { name: "Wilma", x: 840, y: 1300 },
+      { name: "Odlaw", x: 550, y: 1290 },
     ],
     leaderboard: [
       { name: "Ryu", elapsedTime: 36000000 },
@@ -82,13 +58,12 @@ const mapsData = [
     name: "Feast",
     filename: "Waldofeast_2400.jpg",
     message:
-      "Feast This is a generic message that will be udpated closer to finalisation",
+      "Waldo and his gang are hungry and are going to ruin everyone's dinner.  Quickly find them!",
 
     characters: [
-      { name: "Waldo", x: 520, y: 480 },
-      { name: "Wilma", x: 1350, y: 350 },
-      { name: "Wizard Whitebeard", x: 1650, y: 700 },
-      { name: "Odlaw", x: 2100, y: 600 },
+      { name: "Waldo", x: 1600, y: 620 },
+      { name: "Wilma", x: 1090, y: 580 },
+      { name: "Wizard Whitebeard", x: 2380, y: 1500 },
     ],
     leaderboard: [
       { name: "Richter Belmont", elapsedTime: 36000000 },
@@ -107,13 +82,13 @@ const mapsData = [
     name: "Snow",
     filename: "Waldosnow_2400.jpg",
     message:
-      "Snow This is a generic message that will be udpated closer to finalisation",
+      "It's freezing and Waldo and his gang are hitting the snowfields. Find them quickly to put a freeze on their plans!",
 
     characters: [
-      { name: "Waldo", x: 650, y: 550 },
-      { name: "Wilmapoo", x: 1250, y: 400 },
-      { name: "Wizard Whitebeard", x: 1700, y: 650 },
-      { name: "Odlaw", x: 2050, y: 750 },
+      { name: "Waldo", x: 1630, y: 905 },
+      { name: "Wendy", x: 940, y: 515 },
+      { name: "Wizard Whitebeard", x: 130, y: 925 },
+      { name: "Odlaw", x: 605, y: 775 },
     ],
     leaderboard: [
       { name: "Vega", elapsedTime: 36000000 },
@@ -132,13 +107,12 @@ const mapsData = [
     name: "Town",
     filename: "Waldotown_2400.jpg",
     message:
-      "Town This is a generic message that will be udpated closer to finalisation",
+      "Waldo and his gang are hitting the town. Find them so we can declare the streets safe again!",
 
     characters: [
-      { name: "Waldo", x: 580, y: 320 },
-      { name: "Wilma", x: 1450, y: 620 },
-      { name: "Wizard Whitebeard", x: 850, y: 750 },
-      { name: "Odlaw", x: 1950, y: 450 },
+      { name: "Waldo", x: 1040, y: 1130 },
+      { name: "Wilma", x: 1050, y: 895 },
+      { name: "Wizard Whitebeard", x: 1580, y: 1155 },
     ],
     leaderboard: [
       { name: "Chun-Li", elapsedTime: 36000000 },

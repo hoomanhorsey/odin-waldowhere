@@ -1,3 +1,6 @@
+To launch react server, cd frontend, then 'npm run dev', which runs the vite framework assigned as the value of 'dev' in package.json
+To launch backend server, cd backend, then 'npm start' which launches the start script in package json. This runs 'node app.js'. Can also run with the command 'node app.js' without using the package.json script
+
 APIs
 
 - GET /characters/verify-location?x=&y=

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import "../Global.css";
 
 import "./GameContainer.css";
 
@@ -77,23 +78,48 @@ function GameContainer() {
   useEffect(() => {
     const score = gameCharacters.filter((char) => char.found).length;
 
-    //TEST WIN CONDITION
-    if (gameCharacters.length) {
-      setGameStatus("WON");
-      setElapsedTime(timer);
-    }
-    //     if (gameCharacters.length > 0 && score === gameCharacters.length) {
+    // //TEST WIN CONDITION
+    // if (gameCharacters.length) {
     //   setGameStatus("WON");
     //   setElapsedTime(timer);
     // }
+    if (gameCharacters.length > 0 && score === gameCharacters.length) {
+      setGameStatus("WON");
+      setElapsedTime(timer);
+    }
   }, [gameCharacters]);
 
   return (
-    <div className="GameContainer">
-      <div>GameStatus tempDisplay- {gameStatus}</div>
-      <div>Map tempDisplay {mapObject?.name || "No map selected"}</div>{" "}
+    <div>
       {gameStatus === "MAPSELECT" && (
-        <MapSelect setGameStatus={setGameStatus} setMapObject={setMapObject} />
+        <>
+          <p>
+            Sources from partner foreign intelligence agencies have indicated
+            that notorious international terrorist Waldo and his team of terror
+            makers have entered the country under false passports and plan an
+            attack on a mass crowd gathering!
+          </p>
+          <p>
+            It is understaood that Waldo and his team have already inserted
+            themselves in target areas to engage in reconaissance before their
+            proposed attack. We have access to spy satellite imagery that
+            provides us with real time images of possible attack targets.
+          </p>
+          <p>
+            We must as a matter of extreme urgency locate Waldo and his team
+            members so that our ground teams can apprehend them. identify each
+            of them to prevent them from implementing their evil plans!
+          </p>
+          <p>
+            Choose one of the locations below to start the surveillance mission!
+          </p>
+          <div className="mapSelectScreen">
+            <MapSelect
+              setGameStatus={setGameStatus}
+              setMapObject={setMapObject}
+            />
+          </div>
+        </>
       )}
       {gameStatus !== "MAPSELECT" && (
         <>

@@ -18,16 +18,15 @@ function MapSelect({ setGameStatus, setMapObject }) {
   function handleMapSelect(singleMap) {
     setGameStatus("IDLE");
     setMapObject(singleMap);
+    console.log(singleMap);
   }
 
   return (
     <>
-      <div>HELLO</div>
-
       {mapArrayDisplay.map((singleMap) => {
         return (
           <p key={singleMap.id} onClick={() => handleMapSelect(singleMap)}>
-            {singleMap.name}
+            - {singleMap.name} -
           </p>
         );
       })}

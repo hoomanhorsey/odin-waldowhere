@@ -4,3 +4,13 @@
   align-items: center; /* centers vertically */
   min-height: 100vh; /* full viewport height */
 }
+.App {
+  min-height: 100vh;
+
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.65)),
+    url("/assets/waldoPortrait.jpeg");
+  /* background-size: cover; */
+  background-position: center;
+  background-repeat: no-repeat;
+}

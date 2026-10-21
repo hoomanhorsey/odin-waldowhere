@@ -30,9 +30,6 @@ function GameBoard({
 
     console.log("imageX:", imageX, "imageY:", imageY);
 
-    alert(
-      `testing handle image click - mapId: ${mapObject.id}, imageX: ${imageX}, imageY: ${imageY}`,
-    );
     try {
       const response = await fetch(
         `http://localhost:3000/characters/verify-location?mapId=${mapObject.id}&x=${imageX}&y=${imageY}`,
@@ -123,7 +120,6 @@ function GameBoard({
           src={`assets/${mapObject.filename}`}
           onClick={handleImageClick}
         />
-        TODO GET RIDE OF HTIS INSIDE GAMEBOARDboo - {mapObject.name}
         <CharacterTargetingUI
           verifiedCharacterCoordinates={verifiedCharacterCoordinates}
           imageBounds={imageRef.current?.getBoundingClientRect()}
