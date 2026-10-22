@@ -9,7 +9,6 @@ function GameBoard({
   setGameCharacters,
   mapObject,
 }) {
-  console.log(mapObject.filename);
   const [verifiedCharacterCoordinates, setVerifiedCharacterCoordinates] =
     useState(false);
   // const [imageBounds, setImageBounds] = useState(null);

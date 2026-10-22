@@ -43,7 +43,7 @@ function GameResultsModal({
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h2>Game Complete!</h2>
+        <h2>You've found everyone!!!</h2>
         <p>Time to find all the characters: {formatTime(elapsedTime)}s</p>
 
         <input

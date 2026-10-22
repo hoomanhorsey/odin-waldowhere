@@ -2,6 +2,13 @@
   font-family: Courier, monospace;
 }
 
+h2 {
+  color: grey;
+  padding: 0.5rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
 p {
   padding: 0.5rem;
   margin: 0 auto;

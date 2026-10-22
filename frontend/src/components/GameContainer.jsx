@@ -78,15 +78,16 @@ function GameContainer() {
   useEffect(() => {
     const score = gameCharacters.filter((char) => char.found).length;
 
-    // //TEST WIN CONDITION
-    // if (gameCharacters.length) {
-    //   setGameStatus("WON");
-    //   setElapsedTime(timer);
-    // }
-    if (gameCharacters.length > 0 && score === gameCharacters.length) {
+    //TEST WIN CONDITION
+    if (gameCharacters.length) {
       setGameStatus("WON");
       setElapsedTime(timer);
     }
+    // NORMAL WIN CONDITION
+    // if (gameCharacters.length > 0 && score === gameCharacters.length) {
+    //   setGameStatus("WON");
+    //   setElapsedTime(timer);
+    // }
   }, [gameCharacters]);
 
   return (
