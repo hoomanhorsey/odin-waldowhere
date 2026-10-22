@@ -1,9 +1,6 @@
 import scoreRepository from "../repositories/scoreRepository.js";
 
 async function addScore(mapId, name, elapsedTime) {
-  console.log("from service");
-  console.log(name, elapsedTime);
-
   const { updatedLeaderboard, newEntry } =
     await scoreRepository.addLeaderboardEntry(mapId, name, elapsedTime);
 
@@ -14,6 +11,8 @@ async function addScore(mapId, name, elapsedTime) {
   const topTenLeaderboard = updatedLeaderboard.slice(0, 10);
 
   console.log("rank", rank);
+  console.log("toptenleaderboard from service");
+  console.table(topTenLeaderboard);
   return { topTenLeaderboard, newEntry, rank };
 }
 

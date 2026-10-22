@@ -6,15 +6,14 @@ async function saveScore(req, res) {
   const playerName = req.body.playerName;
   const elapsedTime = parseInt(req.body.elapsedTime);
 
-  console.log(playerName, elapsedTime, mapId);
-
   try {
     const { topTenLeaderboard, newEntry, rank } = await scoreService.addScore(
       mapId,
       playerName,
       elapsedTime,
     );
-
+    console.log("toptenleaderboard from controller");
+    console.table(topTenLeaderboard);
     if (topTenLeaderboard) {
       res.status(200).json({
         success: true,
