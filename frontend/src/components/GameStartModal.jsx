@@ -6,8 +6,10 @@ function GameStartModal({
   setGameStatus,
   mapObjectMessage,
   mapObjectCharacters,
+  setPlayerAction,
 }) {
   const startGame = () => {
+    setPlayerAction("Searching...");
     setGameStatus("TARGETING");
   };
 

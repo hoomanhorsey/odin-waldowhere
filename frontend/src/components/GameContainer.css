@@ -6,7 +6,6 @@
 
 .game-hud {
   font-size: 0.8rem;
-
   position: fixed;
   top: 1rem;
   right: 1rem;
@@ -14,10 +13,23 @@
   padding: 0.7rem;
   background: rgba(255, 255, 255, 0.9);
   border-radius: 0.5rem;
+  color: white;
+  background: #2b6cb0;
 }
 
 .game-hud-row {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.player-actions {
+  font-size: 0.8rem;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1000;
+  padding: 0.7rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 0.5rem;
 }

@@ -8,6 +8,7 @@ function GameResultsModal({
   setLeaderboard,
   setGameStatus,
   mapId,
+  setPlayerAction,
 }) {
   const [playerName, setPlayerName] = useState("");
 
@@ -31,6 +32,7 @@ function GameResultsModal({
         if (data.success) {
           setLeaderboard(data.leaderboard);
           setGameStatus("COMPLETED");
+          setPlayerAction("Displaying Leaderboard");
         } else {
           console.error(data.message);
         }
@@ -43,7 +45,7 @@ function GameResultsModal({
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h2>You've found everyone!!!</h2>
+        <h1>You've found everyone!!!</h1>
         <p>Time to find all the characters: {formatTime(elapsedTime)}s</p>
 
         <input

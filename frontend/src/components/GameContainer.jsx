@@ -7,6 +7,7 @@ import MapSelect from "./MapSelect.jsx";
 import GameBoard from "./GameBoard.jsx";
 import Timer from "./Timer.jsx";
 import Score from "./Score.jsx";
+import PlayerAction from "./PlayerAction.jsx";
 
 import GameStartModal from "./GameStartModal.jsx";
 import GameResultsModal from "./GameResultsModal.jsx";
@@ -22,7 +23,7 @@ function GameContainer() {
   const [elapsedTime, setElapsedTime] = useState(null);
   const [leaderboard, setLeaderboard] = useState(null);
   const [timer, setTimer] = useState(0);
-
+  const [playerAction, setPlayerAction] = useState("Get ready...");
   // EFFECT: Reset timer when game returns to IDLE
   useEffect(() => {
     if (gameStatus === "IDLE") {
@@ -82,11 +83,13 @@ function GameContainer() {
     if (gameCharacters.length) {
       setGameStatus("WON");
       setElapsedTime(timer);
+      setPlayerAction("Everybody found!");
     }
-    // NORMAL WIN CONDITION
+    //NORMAL WIN CONDITION
     // if (gameCharacters.length > 0 && score === gameCharacters.length) {
     //   setGameStatus("WON");
     //   setElapsedTime(timer);
+    //   setPlayerAction("Everybody found!");
     // }
   }, [gameCharacters]);
 
@@ -132,14 +135,17 @@ function GameContainer() {
             gameCharacters={gameCharacters}
             setGameCharacters={setGameCharacters}
             mapObject={mapObject}
+            setPlayerAction={setPlayerAction}
           />
+          <div className="player-action"></div>
+          <div className="player-actions">
+            <PlayerAction key={playerAction} playerAction={playerAction} />
+          </div>
           <div className="game-hud">
             <div className="game-hud-row">
-              {" "}
               <Timer timer={timer} />
               <Score gameCharacters={gameCharacters} />
             </div>
-
             <RemainingCharacters gameCharacters={gameCharacters} />
           </div>
         </>
@@ -150,6 +156,7 @@ function GameContainer() {
           setLeaderboard={setLeaderboard}
           setGameStatus={setGameStatus}
           mapId={mapObject.id}
+          setPlayerAction={setPlayerAction}
         />
       )}
       {gameStatus === "COMPLETED" && (
@@ -165,6 +172,7 @@ function GameContainer() {
           setTimer={setTimer}
           mapObjectMessage={mapObject.message}
           mapObjectCharacters={mapObject.characters}
+          setPlayerAction={setPlayerAction}
         />
       )}
     </div>

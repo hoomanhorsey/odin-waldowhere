@@ -23,5 +23,6 @@
 }
 
 .game-result-modal-heading {
-  color: black;
+  color: white;
+  background: #2b6cb0;
 }

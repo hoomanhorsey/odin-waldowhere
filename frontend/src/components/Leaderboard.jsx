@@ -11,7 +11,7 @@ function Leaderboard({ leaderboard, setGameStatus, mapName }) {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h2>Leaderboard</h2>
+        <h1>Leaderboard</h1>
         {mapName}
 
         {leaderboard.map((player, index) => (

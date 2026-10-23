@@ -8,6 +8,7 @@ function GameBoard({
   gameCharacters,
   setGameCharacters,
   mapObject,
+  setPlayerAction,
 }) {
   const [verifiedCharacterCoordinates, setVerifiedCharacterCoordinates] =
     useState(false);
@@ -27,8 +28,6 @@ function GameBoard({
     const imageX = event.clientX - imageBounds.left;
     const imageY = event.clientY - imageBounds.top;
 
-    console.log("imageX:", imageX, "imageY:", imageY);
-
     try {
       const response = await fetch(
         `http://localhost:3000/characters/verify-location?mapId=${mapObject.id}&x=${imageX}&y=${imageY}`,
@@ -43,16 +42,23 @@ function GameBoard({
               char.x === data.coordinates[0] && char.y === data.coordinates[1],
           )
         ) {
-          alert("Character at this location has already been found");
+          setPlayerAction("You've already found someone here. WAKE UP!");
+
+          setTimeout(() => {
+            setPlayerAction("Searching...");
+          }, 2000);
+
+          // alert("Character at this location has already been found");
           return;
         }
+        setPlayerAction("You've found somebody!");
 
-        alert(
-          "You've found somebody at co-ordinates x: " +
-            Math.floor(imageX) +
-            " and y: " +
-            Math.floor(imageY),
-        );
+        // alert(
+        //   "You've found somebody at co-ordinates x: " +
+        //     Math.floor(imageX) +
+        //     " and y: " +
+        //     Math.floor(imageY),
+        // );
 
         //TODO
         // You want to set state so that verifiedCharacterCoorindates runs and CharacterMenuyruns.CharacterMenu
@@ -61,12 +67,18 @@ function GameBoard({
         setGameStatus("SELECTINGCHARACTER");
       } else {
         console.error(data.message);
-        alert(
-          "Nobody there of interest. Try again" +
-            Math.floor(imageX) +
-            " and y: " +
-            Math.floor(imageY),
-        );
+
+        setPlayerAction("Nobody there of interest. Keep looking");
+
+        setTimeout(() => {
+          setPlayerAction("Searching...");
+        }, 2000);
+        // alert(
+        //   "Nobody there of interest. Try again" +
+        //     Math.floor(imageX) +
+        //     " and y: " +
+        //     Math.floor(imageY),
+        // );
         setVerifiedCharacterCoordinates(false);
       }
     } catch (error) {
@@ -90,7 +102,12 @@ function GameBoard({
       }
       const data = await response.json();
       if (data.success) {
-        alert("It was the right character!");
+        setPlayerAction("Correct! Good find!");
+        // alert("It was the right character!");
+
+        setTimeout(() => {
+          setPlayerAction("Searching...");
+        }, 3000);
 
         const updatedGameCharacters = gameCharacters.map((char, i) => {
           if (char.name === selectedCharacter) {
@@ -104,7 +121,9 @@ function GameBoard({
         setGameStatus("TARGETING");
       } else {
         console.error(data.message);
-        alert("Wrong character");
+        setPlayerAction("WRONG! Try again.");
+
+        // alert("Wrong character");
       }
     } catch (error) {
       console.error(error);

@@ -21,6 +21,8 @@
   z-index: 1001; /* Slightly higher than overlay */
   max-width: 500px;
   text  align: center;
+  color: white;
+  background: #2b6cb0;
 }
 
 .game-start-modal-heading {
