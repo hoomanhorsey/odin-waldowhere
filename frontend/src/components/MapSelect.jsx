@@ -18,7 +18,6 @@ function MapSelect({ setGameStatus, setMapObject }) {
   function handleMapSelect(singleMap) {
     setGameStatus("IDLE");
     setMapObject(singleMap);
-    console.log(singleMap);
   }
 
   return (

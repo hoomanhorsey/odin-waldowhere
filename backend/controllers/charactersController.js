@@ -1,8 +1,6 @@
 import charactersService from "../services/charactersService.js";
 
 async function getMaps(req, res) {
-  console.log("getMaps being called");
-
   try {
     const maps = await charactersService.getMapsArray();
     if (maps) {
@@ -23,10 +21,8 @@ async function getMaps(req, res) {
 }
 
 async function getCharacters(req, res) {
-  console.log("getCharacters is being called");
   try {
     const mapId = parseInt(req.query.mapId);
-    console.log(mapId);
     const characters = await charactersService.getCharacters(mapId);
 
     if (characters) {
@@ -47,13 +43,6 @@ async function getCharacters(req, res) {
 }
 
 async function verifyLocation(req, res) {
-  console.log(
-    "verifyfunction is being called" +
-      req.query.x +
-      req.query.y +
-      req.query.mapId,
-  );
-
   const userX = parseInt(req.query.x);
   const userY = parseInt(req.query.y);
   const mapId = parseInt(req.query.mapId);
@@ -96,7 +85,6 @@ async function verifyCharacterGuess(req, res) {
       mapId,
     );
 
-    console.log(guessResult);
     if (guessResult) {
       res.status(200).json({
         success: true,

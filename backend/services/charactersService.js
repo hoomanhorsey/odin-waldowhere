@@ -7,8 +7,6 @@ const TOLERANCE = IMAGE_SIZE / TOLERANCE_FACTOR;
 //test this API
 //http://localhost:3000/characters/getMaps
 async function getMapsArray() {
-  console.log("get Maps service is called");
-
   const mapArray = await charactersRepository.getMapsArray();
   if (mapArray) {
     return mapArray.map((singleMap) => ({
@@ -25,7 +23,6 @@ async function getMapsArray() {
 //test this API
 //http://localhost:3000/characters/characters
 async function getCharacters(mapId) {
-  console.log("getCharacters service is called");
   const characterArray = await charactersRepository.getCharacterArray(mapId);
   // x and y are null to conceal coords from user
   if (characterArray) {
@@ -43,9 +40,7 @@ async function getCharacters(mapId) {
 //test this API
 //http://localhost:3000/characters/verify-location?x=399&y=399
 async function verifyLocation(userX, userY, mapId) {
-  console.log("verifyLocation called");
   const characterArray = await charactersRepository.getCharacterArray(mapId);
-  console.table(characterArray);
 
   const matchedCharacter = matchCharacterCoordinates(
     characterArray,
@@ -68,11 +63,7 @@ async function verifyLocation(userX, userY, mapId) {
 // test this API
 // http://localhost:3000/characters/verify-character-guess?selectedCharacter=Paul%20McCartney&x=399&y=399
 async function verifyCharacterGuess(selectedCharacter, userX, userY, mapId) {
-  console.log("verifyCharacterGuess called");
-
   const characterArray = await charactersRepository.getCharacterArray(mapId);
-
-  console.table(characterArray);
 
   const matchedCharacter = matchCharacterCoordinates(
     characterArray,

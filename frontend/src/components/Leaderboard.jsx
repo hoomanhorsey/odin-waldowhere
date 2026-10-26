@@ -1,8 +1,6 @@
 import "./Leaderboard.css";
 import { formatTime } from "../utils/formatTime";
 
-import { useState } from "react";
-
 function Leaderboard({ leaderboard, setGameStatus, mapName }) {
   function restartGame() {
     setGameStatus("MAPSELECT");

@@ -14,8 +14,7 @@ async function addLeaderboardEntry(mapId, name, elapsedTime) {
       where: { mapId: mapId },
       orderBy: { elapsedTime: "asc" },
     });
-    console.log("updatedleaderboard from repo");
-    console.table(updatedLeaderboard);
+
     return { updatedLeaderboard, newEntry };
   } catch (error) {
     console.error(("Failed to add time to leaderboard:", error));

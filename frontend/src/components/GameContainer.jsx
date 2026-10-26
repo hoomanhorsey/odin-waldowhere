@@ -57,7 +57,6 @@ function GameContainer() {
   useEffect(() => {
     async function fetchCharacters() {
       try {
-        console.log("mapObject.mapId:", mapObject.mapId);
         const response = await fetch(
           `http://localhost:3000/characters/characters?mapId=${mapObject.id}`,
         );

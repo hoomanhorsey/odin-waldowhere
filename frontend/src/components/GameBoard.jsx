@@ -53,13 +53,6 @@ function GameBoard({
         }
         setPlayerAction("You've found somebody!");
 
-        // alert(
-        //   "You've found somebody at co-ordinates x: " +
-        //     Math.floor(imageX) +
-        //     " and y: " +
-        //     Math.floor(imageY),
-        // );
-
         //TODO
         // You want to set state so that verifiedCharacterCoorindates runs and CharacterMenuyruns.CharacterMenu
         // setVerifiedCharacterCoordinates, which triggers OutlineFound Charcater
@@ -73,12 +66,7 @@ function GameBoard({
         setTimeout(() => {
           setPlayerAction("Searching...");
         }, 2000);
-        // alert(
-        //   "Nobody there of interest. Try again" +
-        //     Math.floor(imageX) +
-        //     " and y: " +
-        //     Math.floor(imageY),
-        // );
+
         setVerifiedCharacterCoordinates(false);
       }
     } catch (error) {
@@ -88,7 +76,6 @@ function GameBoard({
 
   async function handleCharacterSubmit(x, y) {
     if (!selectedCharacter || selectedCharacter === "Choose a character") {
-      console.warn("Please select a character first");
       return;
     }
 
@@ -103,7 +90,6 @@ function GameBoard({
       const data = await response.json();
       if (data.success) {
         setPlayerAction("Correct! Good find!");
-        // alert("It was the right character!");
 
         setTimeout(() => {
           setPlayerAction("Searching...");
@@ -122,8 +108,6 @@ function GameBoard({
       } else {
         console.error(data.message);
         setPlayerAction("WRONG! Try again.");
-
-        // alert("Wrong character");
       }
     } catch (error) {
       console.error(error);

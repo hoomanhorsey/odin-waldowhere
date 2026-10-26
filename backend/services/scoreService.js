@@ -10,9 +10,6 @@ async function addScore(mapId, name, elapsedTime) {
 
   const topTenLeaderboard = updatedLeaderboard.slice(0, 10);
 
-  console.log("rank", rank);
-  console.log("toptenleaderboard from service");
-  console.table(topTenLeaderboard);
   return { topTenLeaderboard, newEntry, rank };
 }
 

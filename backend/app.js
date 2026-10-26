@@ -5,9 +5,6 @@ import express from "express";
 import cors from "cors";
 const app = express();
 
-// Validation
-// import { body, validationResult } from "express-validator";
-
 // Route imports
 import charactersRouter from "./routes/charactersRouter.js";
 import scoreRouter from "./routes/scoreRouter.js";

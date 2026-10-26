@@ -13,8 +13,6 @@ function CharacterTargetingUI({
 
   const radius = 5; // 20px diameter circle
 
-  console.log(`SVG position - left: ${x - radius}, top: ${y - radius}`);
-
   return (
     <>
       <svg

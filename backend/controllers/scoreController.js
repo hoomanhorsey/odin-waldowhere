@@ -5,15 +5,18 @@ async function saveScore(req, res) {
   const mapId = parseInt(req.body.mapId);
   const playerName = req.body.playerName;
   const elapsedTime = parseInt(req.body.elapsedTime);
-
   try {
     const { topTenLeaderboard, newEntry, rank } = await scoreService.addScore(
       mapId,
       playerName,
       elapsedTime,
     );
-    console.log("toptenleaderboard from controller");
-    console.table(topTenLeaderboard);
+    // new entry isn't used either at this moment but I've kept it as something to be returned
+    console.log(
+      "rank isn't currently used, but this is the current rank in the total leaderboard - printed from scoreController.js",
+      rank,
+    );
+
     if (topTenLeaderboard) {
       res.status(200).json({
         success: true,

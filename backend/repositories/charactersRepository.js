@@ -6,7 +6,6 @@ async function getMapsArray() {
       include: { characters: { select: { name: true } } },
     });
 
-    console.table(mapsArray);
     return mapsArray;
   } catch (error) {
     console.error("Failed to fetch maps array:", error);
