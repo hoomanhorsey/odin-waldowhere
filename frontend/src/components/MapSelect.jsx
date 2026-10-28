@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 
 import "./MapSelect.css";
 
+const backendURL = import.meta.env.VITE_BACKEND_URL;
+
 function MapSelect({ setGameStatus, setMapObject }) {
   const [mapArrayDisplay, setMapArrayDisplay] = useState([]);
 
   useEffect(() => {
     async function getMaps() {
-      const response = await fetch(`http://localhost:3000/characters/maps`);
+      const response = await fetch(`${backendURL}/characters/maps`);
       const mapsArray = await response.json();
 
       setMapArrayDisplay(mapsArray.maps);

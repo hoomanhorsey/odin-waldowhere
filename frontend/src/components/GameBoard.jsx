@@ -2,6 +2,8 @@ import { useState, useRef } from "react";
 import "./GameBoard.css";
 import CharacterTargetingUI from "./CharacterTargetingUI.jsx";
 
+const backendURL = import.meta.env.VITE_BACKEND_URL;
+
 function GameBoard({
   gameStatus,
   setGameStatus,
@@ -30,7 +32,7 @@ function GameBoard({
 
     try {
       const response = await fetch(
-        `http://localhost:3000/characters/verify-location?mapId=${mapObject.id}&x=${imageX}&y=${imageY}`,
+        `${backendURL}/characters/verify-location?mapId=${mapObject.id}&x=${imageX}&y=${imageY}`,
       );
 
       const data = await response.json();
@@ -81,7 +83,7 @@ function GameBoard({
 
     try {
       const response = await fetch(
-        `http://localhost:3000/characters/verify-character-guess?mapId=${mapObject.id}&selectedCharacter=${selectedCharacter}&x=${x}&y=${y}`,
+        `${backendURL}/characters/verify-character-guess?mapId=${mapObject.id}&selectedCharacter=${selectedCharacter}&x=${x}&y=${y}`,
       );
 
       if (!response.ok) {

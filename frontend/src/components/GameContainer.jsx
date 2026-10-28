@@ -3,6 +3,8 @@ import "../Global.css";
 
 import "./GameContainer.css";
 
+const backendURL = import.meta.env.VITE_BACKEND_URL;
+
 import MapSelect from "./MapSelect.jsx";
 import GameBoard from "./GameBoard.jsx";
 import Timer from "./Timer.jsx";
@@ -58,7 +60,7 @@ function GameContainer() {
     async function fetchCharacters() {
       try {
         const response = await fetch(
-          `http://localhost:3000/characters/characters?mapId=${mapObject.id}`,
+          `${backendURL}/characters/characters?mapId=${mapObject.id}`,
         );
         const data = await response.json();
         if (data.success) {
@@ -78,18 +80,18 @@ function GameContainer() {
   useEffect(() => {
     const score = gameCharacters.filter((char) => char.found).length;
 
-    //TEST WIN CONDITION
-    if (gameCharacters.length) {
-      setGameStatus("WON");
-      setElapsedTime(timer);
-      setPlayerAction("Everybody found!");
-    }
-    //NORMAL WIN CONDITION
-    // if (gameCharacters.length > 0 && score === gameCharacters.length) {
+    // //TEST WIN CONDITION
+    // if (gameCharacters.length) {
     //   setGameStatus("WON");
     //   setElapsedTime(timer);
     //   setPlayerAction("Everybody found!");
     // }
+    // NORMAL WIN CONDITION
+    if (gameCharacters.length > 0 && score === gameCharacters.length) {
+      setGameStatus("WON");
+      setElapsedTime(timer);
+      setPlayerAction("Everybody found!");
+    }
   }, [gameCharacters]);
 
   return (

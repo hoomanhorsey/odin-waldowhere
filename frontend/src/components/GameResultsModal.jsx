@@ -3,6 +3,8 @@ import { formatTime } from "../utils/formatTime";
 
 import "./GameResultsModal.css";
 
+const backendURL = import.meta.env.VITE_BACKEND_URL;
+
 function GameResultsModal({
   elapsedTime,
   setLeaderboard,
@@ -15,7 +17,7 @@ function GameResultsModal({
   const handleSaveScore = async (playerName, elapsedTime) => {
     if (playerName.trim()) {
       try {
-        const response = await fetch("http://localhost:3000/score/save-score", {
+        const response = await fetch(`${backendURL}/score/save-score`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
