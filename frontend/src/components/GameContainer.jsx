@@ -138,7 +138,7 @@ function GameContainer() {
             mapObject={mapObject}
             setPlayerAction={setPlayerAction}
           />
-          <div className="player-action"></div>
+          {/* <div className="player-action"></div> */}
           <div className="player-actions">
             <PlayerAction key={playerAction} playerAction={playerAction} />
           </div>

@@ -91,6 +91,7 @@ function GameBoard({
       }
       const data = await response.json();
       if (data.success) {
+        console.log(data.success);
         setPlayerAction("Correct! Good find!");
 
         setTimeout(() => {
@@ -109,7 +110,12 @@ function GameBoard({
         setGameStatus("TARGETING");
       } else {
         console.error(data.message);
-        setPlayerAction("WRONG! Try again.");
+        setPlayerAction("");
+        // setPlayerAction("WRONG! Try again.");
+
+        setTimeout(() => {
+          setPlayerAction("WRONG! Try again.");
+        }, 10);
       }
     } catch (error) {
       console.error(error);
